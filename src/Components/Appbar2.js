@@ -5,41 +5,47 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
 import { Icon } from "@iconify/react";
+import { useState } from 'react';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
+const Appbar2 = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const toggleShowDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  }
 
-function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+  }
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
+  function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
 
-export default function BasicTabs() {
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -48,7 +54,7 @@ export default function BasicTabs() {
 
   return (
     <>
-      <Grid container display="flex" border="1px solid red" direction="row" marginTop='50px' boxShadow={3} padding={'5px'}>
+      <Grid container marginTop={'50px'} display="flex" border="1px solid red" direction="row" boxShadow={3} padding={'5px'}>
         <Grid border="1px solid red" item sx={{ marginLeft: { xs: 3 } }}>
           <Box component="img" src="https://dearpet.in/cdn/shop/files/logo.png?v=1617976255" sx={{ width: { xs: 30, lg: 45 }, height: { xs: 30, lg: 45 }, marginRight: 0 }} alt="logo" />
         </Grid>
@@ -73,15 +79,23 @@ export default function BasicTabs() {
             </CustomTabPanel>
           </Box>
         </Grid>
-        <Grid border="1px solid red" item sx={{ marginLeft: 'auto', marginRight: '20px' }} >
-          <Icon icon="gridicons:search" width="25" height="25"> </Icon>
-          <Icon sx={{marginRight:'5px'}} icon="flowbite:shopping-bag-outline" width="25" height="25" />
-          <Icon marginRight='30px' icon="grommet-icons:menu" width="25" height="25" />
-
+        <Grid border="1px solid red" item sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }} >
+          <Box sx={{ marginRight: '18px' }}>
+            <Icon icon="gridicons:search" width="27" height="27" />
+          </Box>
+          <Box sx={{ display: { xs: 'none', lg: 'block', marginRight: '18px' } }}>
+            <Icon icon="pajamas:user" width="23" height="23" />
+          </Box>
+          <Box sx={{ marginRight: { xs: '18px', lg: '100px' } }}>
+            <Icon icon="flowbite:shopping-bag-outline" width="27" height="27" />
+          </Box>
+          <Box sx={{ marginRight: { xs: '20px' }, display: { lg: 'none' } }}>
+            <Icon icon="iconoir:menu" width="27" height="27" />
+          </Box>
         </Grid>
       </Grid>
-
     </>
   );
 }
 
+export default Appbar2;
