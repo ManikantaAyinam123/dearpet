@@ -3,20 +3,38 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Grid } from '@mui/material';
+import { Button, Drawer, Grid, Menu } from '@mui/material';
 import { Icon } from "@iconify/react";
 import { useState } from 'react';
+import Authentication from './Authentication';
+import MenuContent from './MenuContent';
+import DummyMenuContent from './DummyMenuContent';
+
 
 const Appbar2 = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const toggleShowDrawer = () => {
-    setDrawerOpen(!drawerOpen);
+  const [hoveredTab, setHoveredTab] = useState(-1); 
+  const toggleShowDrawer = (value: boolean) => {
+    setDrawerOpen(value);
   }
+  const [userDrawerOpen, setUserDrawerOpen] = useState(false);
+  const toggleUserDrawer = (value2: boolean) => {
+    setUserDrawerOpen(value2);
+  }
+  const handleTabMouseOver = (index: number) => {
+    setHoveredTab(index); 
+  };
+
+  const handleTabMouseOut = () => {
+    setHoveredTab(-1);
+  };
+
 
   interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
+
   }
 
   function CustomTabPanel(props: TabPanelProps) {
@@ -52,46 +70,76 @@ const Appbar2 = () => {
     setValue(newValue);
   };
 
+
   return (
     <>
       <Grid container marginTop={'50px'} display="flex" border="1px solid red" direction="row" boxShadow={3} padding={'5px'}>
         <Grid border="1px solid red" item sx={{ marginLeft: { xs: 3 } }}>
           <Box component="img" src="https://dearpet.in/cdn/shop/files/logo.png?v=1617976255" sx={{ width: { xs: 30, lg: 45 }, height: { xs: 30, lg: 45 }, marginRight: 0 }} alt="logo" />
         </Grid>
-        <Grid border="1px solid red" item sx={{ marginLeft: 50, display: { xs: 'none' } }} >
+
+
+        <Grid border="1px solid red" item sx={{ marginLeft: 50, display: { xs: 'none', lg: 'block' } }} >
           <Box sx={{}}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="DOG" {...a11yProps(0)} />
-                <Tab label="CAT" {...a11yProps(1)} />
-                <Tab label="GROMMING" {...a11yProps(2)} />
-                <Tab label="BLOG" {...a11yProps(2)} />
+              <Tabs value={-1} aria-label="basic tabs example"> 
+                <Tab label="DOG" onMouseOver={() => handleTabMouseOver(0)} onMouseOut={handleTabMouseOut} />
+                <Tab label="CAT" onMouseOver={() => handleTabMouseOver(1)} onMouseOut={handleTabMouseOut} />
+                <Tab label="GROMMING" onMouseOver={() => handleTabMouseOver(2)} onMouseOut={handleTabMouseOut} />
+                <Tab label="BLOG" onMouseOver={() => handleTabMouseOver(3)} onMouseOut={handleTabMouseOut} />
               </Tabs>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-              Item One
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-              Item Two
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-              Item Three
-            </CustomTabPanel>
           </Box>
         </Grid>
+
+       
+        <Grid item>
+          {hoveredTab !== -1 && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 'calc(100% + 5px)', 
+                left: '50%', 
+                transform: 'translateX(-50%)', 
+                backgroundColor: 'white',
+                border: '1px solid #ccc',
+                padding: '10px',
+                zIndex: 1, 
+              }}
+            >
+          
+              {hoveredTab === 0 && <Typography>Item One</Typography>}
+              {hoveredTab === 1 && <Typography>Item Two</Typography>}
+              {hoveredTab === 2 && <Typography>Item Three</Typography>}
+              {hoveredTab === 3 && <Typography>Item Four</Typography>}
+            </Box>
+          )}
+        </Grid>
+
+
         <Grid border="1px solid red" item sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }} >
           <Box sx={{ marginRight: '18px' }}>
             <Icon icon="gridicons:search" width="27" height="27" />
           </Box>
           <Box sx={{ display: { xs: 'none', lg: 'block', marginRight: '18px' } }}>
-            <Icon icon="pajamas:user" width="23" height="23" />
+            <Button onClick={() => toggleUserDrawer(true)}> <Icon icon="pajamas:user" width="23" height="23" /> </Button>
           </Box>
+          <Drawer anchor="right" open={userDrawerOpen} onClose={() => toggleUserDrawer(false)}>
+
+            <Authentication />
+          </Drawer>
           <Box sx={{ marginRight: { xs: '18px', lg: '100px' } }}>
             <Icon icon="flowbite:shopping-bag-outline" width="27" height="27" />
           </Box>
           <Box sx={{ marginRight: { xs: '20px' }, display: { lg: 'none' } }}>
-            <Icon icon="iconoir:menu" width="27" height="27" />
+
+            <Button onClick={() => toggleShowDrawer(true)}><Icon icon="iconoir:menu" width="27" height="27" /></Button>
+
           </Box>
+          <Drawer open={drawerOpen} onClose={() => toggleShowDrawer(false)}>
+            <MenuContent />
+          </Drawer>
+
         </Grid>
       </Grid>
     </>

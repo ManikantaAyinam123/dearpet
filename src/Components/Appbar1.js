@@ -13,8 +13,8 @@ const Appbar1 = () => {
                         <Grid item><Typography sx={{ fontSize: '12px', fontFamily: 'sans-serif', marginTop: '3px' }}>+919111888111</Typography></Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} md="auto" sx={{ textAlign: 'center', m: 'auto', paddingTop: { xs: '5px', md: '0px' } }}>
-                    <Typography sx={{ marginLeft: '10px', letterSpacing: '.1em', fontSize: '10px', fontFamily: 'sans-serif', lineHeight: "150%" }}>GET UPTO 10% OFF MINIMUM CART VALUE RS799 ONLY!</Typography>
+                <Grid item xs={12} md="auto" sx={{ textAlign: 'center', m: 'auto', paddingTop: { xs: '0px', md: '0px' } }}>
+                    <Typography sx={{ marginLeft: '30px', letterSpacing: '0.1em', fontSize: '9px', fontFamily: 'sans-serif', lineHeight: "140%" }}>GET UPTO 10% OFF MINIMUM CART VALUE RS799 ONLY!</Typography>
                 </Grid>
             </Grid>
         </AppBar>
