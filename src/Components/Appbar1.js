@@ -14,7 +14,7 @@ const Appbar1 = () => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md="auto" sx={{ textAlign: 'center', m: 'auto', paddingTop: { xs: '0px', md: '0px' } }}>
-                    <Typography sx={{ marginLeft: '30px', letterSpacing: '0.1em', fontSize: '9px', fontFamily: 'sans-serif', lineHeight: "140%" }}>GET UPTO 10% OFF MINIMUM CART VALUE RS799 ONLY!</Typography>
+                    <Typography sx={{ marginLeft: '30px', letterSpacing: '0.2em', fontSize: '9px', fontFamily: 'sans-serif', lineHeight: "140%" }}>GET UPTO 10% OFF MINIMUM CART VALUE RS799 ONLY!</Typography>
                 </Grid>
             </Grid>
         </AppBar>
