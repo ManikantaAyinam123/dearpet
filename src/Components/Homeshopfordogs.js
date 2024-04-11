@@ -1,5 +1,6 @@
 import React from 'react'
-import {  Grid, Typography } from '@mui/material'
+import {  Grid, Typography } from '@mui/material';
+import Imagewithzoom from './Imagewithzoom';
 
 
 const Homeshopfordogs = () => {
@@ -51,15 +52,16 @@ const Homeshopfordogs = () => {
       ];
 
   return (
-    <Grid container sx={{justifyContent:'center',mt:5}}>
+    <Grid container sx={{justifyContent:'center',mt:3}}>
         
-        <Grid container  item sx={{width:"80%"}} spacing={2}>
-            <Grid item xs={12} > <Typography sx={{color:"#585858",textAlign:'center',fontWeight:550}}>SHOP FOR DOGS</Typography></Grid> 
+        <Grid container  item sx={{width:"90%"}} spacing={2}>
+            <Grid item xs={12} > <Typography sx={{color:"#585858",textAlign:'center',fontWeight:700,fontSize:{xs:'18px',sm:'20px',md:'30px'},}}>SHOP FOR DOGS</Typography></Grid> 
        
         {images.map((item) => (
             <Grid item xs={6}sm={6}  md={4} >
-              <img src={item.imgPath} alt={'error'}  width= '100%' height= 'auto'  />
-              <Typography sx={{fontSize:{xs:'12px',sm:'14px',md:'16px',lg:'18px'},fontWeight:400}}>{item.name}</Typography>
+             
+              <Imagewithzoom src={item.imgPath} alt={item.name} />
+              <Typography sx={{fontSize:{xs:'12px',sm:'14px',md:'16px',lg:'18px'},fontWeight:400,marginTop:{xs:0.5,sm:1,md:1.5}}}>{item.name}</Typography>
             </Grid>
         ))}
         </Grid>

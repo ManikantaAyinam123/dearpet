@@ -1,10 +1,10 @@
-import { AppBar, Grid, Typography } from '@mui/material'
+import { AppBar, Grid, Typography,Box } from '@mui/material'
 import React from 'react'
 import { Icon } from "@iconify/react";
 
 const Appbar1 = () => {
     return (
-        <AppBar sx={{ backgroundColor: "#6434a4", padding: '8px 70px 8px 5px' }}>
+        <Box sx={{ backgroundColor: "#6434a4",color:'white', padding: '8px 70px 8px 5px' }}>
             <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
                 <Grid item sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <Grid container spacing={0.3}>
@@ -17,7 +17,7 @@ const Appbar1 = () => {
                     <Typography sx={{ marginLeft: '30px', letterSpacing: '0.2em', fontSize: '9px', fontFamily: 'sans-serif', lineHeight: "140%" }}>GET UPTO 10% OFF MINIMUM CART VALUE RS799 ONLY!</Typography>
                 </Grid>
             </Grid>
-        </AppBar>
+        </Box>
 
 
     )

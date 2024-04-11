@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import {Grid , Box} from '@mui/material';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -11,12 +12,13 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { ImportContacts } from '@mui/icons-material';
 
 export default function Homecarousel1() {
   return (
-    <>
+     <Box >
       <Swiper
-        
+           
        
         autoplay={{
           delay: 2500,
@@ -46,6 +48,6 @@ export default function Homecarousel1() {
        
        
       </Swiper>
-    </>
+      </Box>
   );
 }
