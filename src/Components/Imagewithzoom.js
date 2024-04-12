@@ -19,21 +19,20 @@ const useStyles = makeStyles(() => ({
       transition: 'transform 1s ease',
       width: '100%',
       height: 'auto',
-
-
+     
     },
     '&:hover img': {
       transform: 'scale(1.1)',
+      
     },
   },
 }));
 
-
-function Imagewithzoom({ src, alt, border }) {
+function Imagewithzoom({ src, alt }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <img src={src} alt={alt} border={border || 'none'} />
+      <img src={src} alt={alt}  />
     </div>
   );
 }

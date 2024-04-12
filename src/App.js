@@ -7,6 +7,10 @@ import Homeshopfordogs from './Components/Homeshopfordogs';
 import Homecustomable from './Components/Homecustomable';
 import Homeshopessentials from './Components/Homeshopessentials';
 import Homecustomisable2 from './Components/Homecustomisable2';
+import Homecustomerfavouries from './Components/Homecustomerfavouries';
+import Homedearpetrecomndations from './Components/Homedearpetrecomndations';
+import Homecollections from './Components/Homecollections';
+
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
 <Homecustomable/>
 <Homeshopessentials/>
 <Homecustomisable2/>
+<Homecustomerfavouries/>
+<Homedearpetrecomndations/>
+<Homecollections/>
+
 </>
   );
 }
