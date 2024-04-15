@@ -13,7 +13,7 @@ import { ImportContacts } from '@mui/icons-material';
 
 export default function Homecarousel1() {
   return (
-     <Box >
+     <Box  sx={{backgroundColor:'#FFFFFF'}}>
       <Swiper
            
        
@@ -28,6 +28,7 @@ export default function Homecarousel1() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
+       
         <SwiperSlide><img height="auto"width="100%"src="https://dearpet.in/cdn/shop/files/Desktop_website_Food_2.png?v=1712405263">
         </img></SwiperSlide>
         <SwiperSlide><img height="auto"width="100%"src="https://dearpet.in/cdn/shop/files/Desktop_website_banner_7.png?v=1709379440">

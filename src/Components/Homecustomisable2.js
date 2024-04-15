@@ -22,7 +22,7 @@ const Homecustomisable2 = () => {
     ];
 
     return (
-        <>
+        <Grid container sx={{backgroundColor:'#FFFFFF'}}>
             <Grid container sx={{ display: 'flex', alignItems: 'center', backgroundColor: { xs: '#6534AC', sm: '#FFFFFF' }, height: { xs: '50px' }, marginTop: { xs: 3, sm: 4, lg: 5 }, marginBottom: { xs: 3, sm: 4, lg: 5 } }}>
                 <Divider sx={{ flexGrow: 1, height: 1.1, backgroundColor: { xs: '#FFFFFF', sm: 'black' }, marginRight: { xs: 3, sm: 5 } }} />
                 <Typography sx={{ fontSize: { xs: '1.3rem', sm: '2rem', lg: '3rem' }, color: { xs: '#FFFFFF', sm: '#6534AC' }, fontWeight: { xs: 550, sm: 600, lg: '700' }, fontFamily: 'Fredoka One', letterSpacing: '2px' }}>CUSTOMISABLE</Typography>
@@ -57,7 +57,7 @@ const Homecustomisable2 = () => {
             </Grid>
            
             
-        </>
+        </Grid>
     )
 }
 

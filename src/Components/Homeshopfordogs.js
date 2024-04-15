@@ -52,10 +52,10 @@ const Homeshopfordogs = () => {
       ];
 
   return (
-    <Grid container sx={{justifyContent:'center',mt:3}}>
+    <Grid container sx={{justifyContent:'center',backgroundColor:'#FFFFFF'}}>
         
         <Grid container  item sx={{width:"90%"}} spacing={2}>
-            <Grid item xs={12} > <Typography sx={{color:"#585858",textAlign:'center',fontWeight:700,fontSize:{xs:'18px',sm:'20px',md:'30px'},}}>SHOP FOR DOGS</Typography></Grid> 
+            <Grid item xs={12} > <Typography sx={{color:"#585858",textAlign:'center',fontWeight:700,fontSize:{xs:'18px',sm:'20px',md:'30px'},mt:3}}>SHOP FOR DOGS</Typography></Grid> 
        
         {images.map((item) => (
             <Grid item xs={6}sm={6}  md={4} >

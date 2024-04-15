@@ -13,7 +13,7 @@ const Homeshopessentials = () => {
     ];
     return (
         <>
-        <Grid container sx={{ justifyContent: 'center' }}>
+        <Grid container sx={{ justifyContent: 'center',backgroundColor:'#FFFFFF' }}>
             <Grid container item width="90%" >
                 <Grid item xs={12}>
                     <Typography sx={{ color: '#6A4EA4', letterSpacing: '0.1em', fontSize: { xs: '20px', sm: '25px', lg: '30px', textAlign: 'center' }, fontWeight: { xs: 550, sm: 600, lg: 700 },marginTop:{xs:'5px'},marginBottom:{xs:'5px'} }}>

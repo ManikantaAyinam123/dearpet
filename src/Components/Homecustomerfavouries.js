@@ -26,7 +26,7 @@ const Homecustomerfavouries = () => {
     },
   ];
   return (
-    <>
+    <Grid container sx={{backgroundColor:'#FFFFFF'}}>
      <Grid container justifyContent={'center'}>
     <Typography sx={{color:'#6A4EA4',fontSize:{xs:'20px',sm:"25px",md:'28px',lg:'30px'},fontWeight:{xs:700},letterSpacing:'0.1em',marginTop:{xs:'15px',sm:'35px'},marginBottom:{xs:'13px',sm:'20px'}}}>Customer Favourites</Typography>
     </Grid>
@@ -60,7 +60,7 @@ const Homecustomerfavouries = () => {
               </SwiperSlide>
               
             ))}
-           {/* <Divider width={'10px'} color={'black'}></Divider> */}
+          
             
         
         </Swiper>
@@ -83,7 +83,7 @@ const Homecustomerfavouries = () => {
 
 
    
-    </>
+    </Grid>
   )
 }
 
