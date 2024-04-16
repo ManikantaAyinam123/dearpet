@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
-import Imagewithzoom from './Imagewithzoom';
+import Imagewithzoom from './ImageWithZoom';
 
 const Homedearpetrecomndations = () => {
   return (

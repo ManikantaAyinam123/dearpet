@@ -24,7 +24,7 @@ const Homenewsletter = () => {
                                     ),
                                     sx: {
                                         width: { xs: '100%', sm: '350px', md: '380px' },
-                                        marginLeft: {  sm: '150px', md: '250px', lg: '450px' }, // Adjusted marginLeft for xs view
+                                        marginLeft: {  sm: '150px', md: '250px', lg: '450px' }, 
                                         borderRadius: '30px',
                                         height: '50px',
                                         backgroundColor: '#FFFFFF',
