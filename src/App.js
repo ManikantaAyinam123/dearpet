@@ -1,14 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import Appbar1 from './Components/Appbar1';
-import Appbar2 from './Components/Appbar2';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from './Pages/HomePage';
+import CreateAccountPage from './Pages/CreateAccountPage';
+
+
 
 function App() {
   return (
-<>
-<Appbar1/>
-<Appbar2/>
-</>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/CreateAccountPage' element={<CreateAccountPage/>}/>
+        </Routes>
+      </BrowserRouter>
+    </>
+
   );
 }
 

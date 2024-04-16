@@ -3,85 +3,115 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Grid } from '@mui/material';
+import { Button, Drawer, Grid, Menu, AppBar } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import { Icon } from "@iconify/react";
+import { useState, useEffect, useRef } from 'react'; // Import useEffect and useRef
+import Authentication from './Authentication';
+import MenuContent from './MenuContent';
+import Dog from './Dog';
+import Cat from './Cat';
+import '../App.css';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
+const Appbar2 = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [hoveredTab, setHoveredTab] = useState(-1);
+  const [isSticky, setIsSticky] = useState(false); // Add state for sticky behavior
+  const appbarRef = useRef(null); // Create a reference to the appbar element
 
-function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const toggleShowDrawer = (value: boolean) => {
+    setDrawerOpen(value);
+  }
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
+  const [userDrawerOpen, setUserDrawerOpen] = useState(false);
+  const toggleUserDrawer = (value2: boolean) => {
+    setUserDrawerOpen(value2);
+  }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+  const handleTabMouseOver = (index: number) => {
+    setHoveredTab(index);
   };
 
+  const handleTabMouseOut = () => {
+    setHoveredTab(-1);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (appbarRef.current) {
+        setIsSticky(window.scrollY > appbarRef.current.offsetTop);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-      <Grid container display="flex" border="1px solid red" direction="row" marginTop='50px' boxShadow={3} padding={'5px'}>
-        <Grid border="1px solid red" item sx={{ marginLeft: { xs: 3 } }}>
+    <AppBar position={isSticky ? "fixed" : "static"} ref={appbarRef} style={{ zIndex: 9999 }}>
+      <Grid container backgroundColor={'#FFFFFF'} display="flex" direction="row" padding={'5px'}>
+        <Grid item sx={{ marginLeft: { xs: 4, lg: 10 } }}>
           <Box component="img" src="https://dearpet.in/cdn/shop/files/logo.png?v=1617976255" sx={{ width: { xs: 30, lg: 45 }, height: { xs: 30, lg: 45 }, marginRight: 0 }} alt="logo" />
         </Grid>
-        <Grid border="1px solid red" item sx={{ marginLeft: 50, display: { xs: 'none' } }} >
-          <Box sx={{}}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="DOG" {...a11yProps(0)} />
-                <Tab label="CAT" {...a11yProps(1)} />
-                <Tab label="GROMMING" {...a11yProps(2)} />
-                <Tab label="BLOG" {...a11yProps(2)} />
+
+        <Grid item sx={{ marginLeft: 45, display: { xs: 'none', lg: 'block' }, padding: 0 }} onMouseLeave={handleTabMouseOut}>
+          <Box sx={{ position: 'relative', }}>
+            <Box>
+              <Tabs value={-1} aria-label="basic tabs example">
+                <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="DOG" onMouseOver={() => handleTabMouseOver(0)} />
+                <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="CAT" onMouseOver={() => handleTabMouseOver(1)} />
+                <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="GROOMING" onMouseOver={() => handleTabMouseOver(2)} />
+                <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="BLOG" onMouseOver={() => handleTabMouseOver(3)} />
               </Tabs>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-              Item One
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-              Item Two
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-              Item Three
-            </CustomTabPanel>
+            {(hoveredTab === 0 || hoveredTab === 1) && (
+              <Box
+                sx={{
+                  position: 'fixed',
+                  top: '87px',
+                  left: 0,
+                  width: '100%',
+                  color: 'black',
+                  backgroundColor: '#EEEEEE',
+                  padding: '30px',
+                  zIndex: 9999,
+                }}
+              >
+                {hoveredTab === 0 && <Dog />}
+                {hoveredTab === 1 && <Cat />}
+
+              </Box>
+            )}
           </Box>
         </Grid>
-        <Grid border="1px solid red" item sx={{ marginLeft: 'auto', marginRight: '20px' }} >
-          <Icon icon="gridicons:search" width="25" height="25"> </Icon>
-          <Icon sx={{marginRight:'5px'}} icon="flowbite:shopping-bag-outline" width="25" height="25" />
-          <Icon marginRight='30px' icon="grommet-icons:menu" width="25" height="25" />
 
+        <Grid item sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }} >
+          <Box sx={{ marginRight: '15px' }}>
+            <IconButton sx={{ color: 'black' }}><Icon icon="gridicons:search" width="27" height="27" /></IconButton>
+          </Box>
+          <Box sx={{ display: { xs: 'none', lg: 'block', marginRight: '15px' } }}>
+            <IconButton onClick={() => toggleUserDrawer(true)} sx={{ color: 'black' }}> <Icon icon="pajamas:user" width="23" height="23" /> </IconButton>
+          </Box>
+          <Drawer anchor="right" open={userDrawerOpen} onClose={() => toggleUserDrawer(false)}>
+            <Authentication />
+          </Drawer>
+          <Box sx={{ marginRight: { xs: '13px', lg: '100px' } }}>
+            <IconButton sx={{ color: 'black' }}><Icon icon="flowbite:shopping-bag-outline" width="27" height="27" /></IconButton>
+          </Box>
+          <Box sx={{ marginRight: { xs: '18px' }, display: { lg: 'none' }, }}>
+
+            <IconButton onClick={() => toggleShowDrawer(true)} sx={{ color: 'black' }} > <Icon icon="iconoir:menu" width="27" height="27" /></IconButton>
+
+          </Box>
+          <Drawer open={drawerOpen} onClose={() => toggleShowDrawer(false)}>
+            <MenuContent />
+          </Drawer>
         </Grid>
       </Grid>
-
-    </>
+    </AppBar>
   );
 }
 
+export default Appbar2;
