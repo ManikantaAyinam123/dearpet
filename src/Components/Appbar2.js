@@ -13,11 +13,12 @@ import Dog from './Dog';
 import Cat from './Cat';
 import '../App.css';
 
+
 const Appbar2 = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState(-1);
   const [isSticky, setIsSticky] = useState(false); // Add state for sticky behavior
-  const appbarRef = useRef(null); // Create a reference to the appbar element
+  const appbarRef = useRef(null); 
 
   const toggleShowDrawer = (value: boolean) => {
     setDrawerOpen(value);

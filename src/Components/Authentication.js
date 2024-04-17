@@ -2,71 +2,103 @@ import { Divider, Grid, Typography, Box, TextField, Button, IconButton } from '@
 import React, { useEffect, useState } from 'react'
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
+import { getDatabase, set, ref } from "firebase/database";
 
-const Authentication = () => {
+
+const Authentication = (props) => {
     const [formClose, setFormClose] = useState(false);
+    const [signindata, setSigninData] = useState({ email: '', password: '' });
+    const [errors, setErrors] = useState({ email: '', password: '' });
     const navigate = useNavigate();
+    // const dbref=ref(db);
+
+
+    const handleInputChange = (e) => {
+        setSigninData({ ...signindata, [e.target.name]: e.target.value });
+    };
+
+
+    const handleLogin = () => {
+        let dataIsValid = true;
+        const errormsgs = { email: '', password: '', isUserExist: '' };
+        console.log(signindata);
+        if (!signindata.email.trim()) {
+            errormsgs.email = 'Email is required';
+            dataIsValid = false;
+        }
+        if (!signindata.password.trim()) {
+            errormsgs.password = 'Password is required';
+            dataIsValid = false;
+        }
+        if (!dataIsValid) {
+            setErrors(errormsgs);
+            return;
+        }
+
+
+        signInWithEmailAndPassword(auth, signindata.email, signindata.password)
+            .then((userCredential) => {
+              
+                // console.log(res);
+                setFormClose(true);
+            })
+            .catch((error) => {
+
+                console.log("Error", error.message);
+                console.log("Error", error.code);
+
+
+            });
+    }
     useEffect(() => {
         if (formClose) {
 
             window.location.reload();
         }
     }, [formClose]);
-    const handleCreateAccount = () => {
-        navigate("../Pages/CreateAccountPage");
-    }
+
 
     return (
         <>
             {!formClose &&
                 <Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px', border: '2px solid black', position: 'relative', marginTop: {} }}>
-                    <Box sx={{ display: 'flex', position: 'absolute', top: '20px', right: '30px', marginBottom: '50px', fontWeight: 700 }}> <IconButton onClick={() => { setFormClose(true) }}> <Icon icon="iconoir:cancel" width="18" height="18" /><Typography sx={{ fontSize: '12px', fontWeight: 500, ml: '2px' }}>
+                    <Box sx={{ display: 'flex', position: 'absolute', top: '20px', right: '30px', marginBottom: '50px', fontWeight: 700 }}> <IconButton onClick={() => setFormClose(true)}> <Icon icon="iconoir:cancel" width="18" height="18" /><Typography sx={{ fontSize: '12px', fontWeight: 500, ml: '2px' }}>
                         CLOSE</Typography></IconButton></Box>
                     <Box sx={{ mt: '50px' }}> <Typography sx={{ fontSize: '13px', fontWeight: 700, }}>CUSTOMER LOGIN:</Typography></Box>
                     <Divider sx={{ mt: 2 }} />
                     <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Grid item sx={{ mt: 3 }}>
-                            <Typography>
-                                Email Address <Box component="span" sx={{ color: '#F1152F' }}>*</Box>
-                            </Typography>
-                        </Grid>
-                        <Grid item sx={{ mt: 1 }}>
-                            <TextField
-                                placeholder="Email Adress"
-                                type="text"
-                                inputProps={{ style: { height: '10px', width: '384px' } }}
-                                sx={{ marginBottom: '10px' }}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <Typography>Password<Box component="span" sx={{ color: '#F1152F' }}>*</Box></Typography>
-                        </Grid>
-                        <Grid item sx={{ mt: 1 }}>
-                            <TextField
-                                placeholder="Password"
-                                type="password"
-                                inputProps={{ style: { height: '10px', width: '384px' } }}
-                                sx={{ marginBottom: '10px' }}
-                            />
-                        </Grid>
-                        <Grid sx={{ mt: 2 }}>
+
+                        <Typography sx={{ marginTop: { md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}> Email Address<Box component="span" sx={{ color: '#F1152F' }}>*</Box></Typography>
+                        <TextField InputProps={{ sx: { width: '40ch', height: '38px', borderRadius: 0 } }} placeholder='Email Adress' name="email" type="email" onChange={handleInputChange} />
+                        {errors.email && <Typography color="error">{errors.email}</Typography>}
+
+                        <Typography sx={{ marginTop: { md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Password <Box component="span" sx={{ color: '#F1152F' }}>*</Box></Typography>
+                        <TextField InputProps={{ sx: { width: '40ch', height: '38px', borderRadius: 0 } }} placeholder='Password' name="password" type="password" onChange={handleInputChange} />
+                        {errors.password && <Typography color="error">{errors.password}</Typography>}
+                        <Grid >
+
                             <Button
+                                onClick={handleLogin}
                                 variant="outlined"
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    width: '409px',
+                                    width: '353px',
                                     height: '34px',
                                     backgroundColor: '#FFFFFF',
                                     color: '#000000',
                                     border: '1px solid #000000',
-                                    fontWeight: 550
+                                    fontWeight: 550,
+                                    marginTop: '20px'
                                 }}
-                               
+
                             >
                                 LOGIN
                             </Button>
+                            {errors.isUserExist && <Typography color="error">{errors.isUserExist}</Typography>}
                         </Grid>
                         <Grid item sx={{ mt: 2 }}>
                             <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Typography>Forgot your password?</Typography></Box>
@@ -78,7 +110,7 @@ const Authentication = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    width: '409px',
+                                    width: '353px',
                                     height: '34px',
                                     backgroundColor: '#232323',
                                     color: '#FFFFFF',
