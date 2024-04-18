@@ -4,7 +4,8 @@ import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { getDatabase, set, ref } from "firebase/database";
+import { ToastContainer, toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Authentication = (props) => {
@@ -20,7 +21,7 @@ const Authentication = (props) => {
     };
 
 
-    const handleLogin = () => {
+    const handleLogin = async() => {
         let dataIsValid = true;
         const errormsgs = { email: '', password: '', isUserExist: '' };
         console.log(signindata);
@@ -34,23 +35,59 @@ const Authentication = (props) => {
         }
         if (!dataIsValid) {
             setErrors(errormsgs);
+            toast.error('Please Fill All Details', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+                });
             return;
         }
 
+       try{
+        const userCredential = await signInWithEmailAndPassword(auth, signindata.email, signindata.password)
+        console.log("User login sucesssfully:", userCredential.user);
 
-        signInWithEmailAndPassword(auth, signindata.email, signindata.password)
-            .then((userCredential) => {
-              
-                // console.log(res);
-                setFormClose(true);
-            })
-            .catch((error) => {
-
-                console.log("Error", error.message);
-                console.log("Error", error.code);
-
-
+        const token = await userCredential.user.getIdToken();
+        
+        localStorage.setItem('accessToken', token);
+        toast.success('Signed In Sucessfully', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
             });
+        setFormClose(true);
+       
+       
+       }
+       catch(error){
+        console.log("Error", error.message);
+        console.log("Error", error.code);
+        toast.error(error.code, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+            });
+       }
+        
+         
     }
     useEffect(() => {
         if (formClose) {
@@ -63,7 +100,7 @@ const Authentication = (props) => {
     return (
         <>
             {!formClose &&
-                <Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px', border: '2px solid black', position: 'relative', marginTop: {} }}>
+                <Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px', position: 'relative', marginTop: {} }}>
                     <Box sx={{ display: 'flex', position: 'absolute', top: '20px', right: '30px', marginBottom: '50px', fontWeight: 700 }}> <IconButton onClick={() => setFormClose(true)}> <Icon icon="iconoir:cancel" width="18" height="18" /><Typography sx={{ fontSize: '12px', fontWeight: 500, ml: '2px' }}>
                         CLOSE</Typography></IconButton></Box>
                     <Box sx={{ mt: '50px' }}> <Typography sx={{ fontSize: '13px', fontWeight: 700, }}>CUSTOMER LOGIN:</Typography></Box>
@@ -115,6 +152,7 @@ const Authentication = (props) => {
                                     backgroundColor: '#232323',
                                     color: '#FFFFFF',
                                     border: '1px solid #000000',
+                                
                                 }}
                             >
                                 CREATE AN Account
@@ -124,6 +162,7 @@ const Authentication = (props) => {
 
                 </Grid>
             }
+            <ToastContainer />
         </>
     )
 }

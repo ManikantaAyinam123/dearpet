@@ -6,27 +6,47 @@ import Box from '@mui/material/Box';
 import { Button, Drawer, Grid, Menu, AppBar } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import { Icon } from "@iconify/react";
-import { useState, useEffect, useRef } from 'react'; // Import useEffect and useRef
+import { useState, useEffect, useRef } from 'react'; 
 import Authentication from './Authentication';
 import MenuContent from './MenuContent';
 import Dog from './Dog';
 import Cat from './Cat';
 import '../App.css';
+import UserExists from './UserExists';
 
 
 const Appbar2 = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [userDrawerOpen, setUserDrawerOpen] = useState(false);
+  const [userExists, setUserExists] =useState(false);
   const [hoveredTab, setHoveredTab] = useState(-1);
-  const [isSticky, setIsSticky] = useState(false); // Add state for sticky behavior
+  const [isSticky, setIsSticky] = useState(false); 
+
+  const token=localStorage.getItem('accessToken');
+  console.log("Token from Appbar",token);
   const appbarRef = useRef(null); 
 
   const toggleShowDrawer = (value: boolean) => {
     setDrawerOpen(value);
   }
 
-  const [userDrawerOpen, setUserDrawerOpen] = useState(false);
+
   const toggleUserDrawer = (value2: boolean) => {
     setUserDrawerOpen(value2);
+  }
+  const toggleUserExistsDrawer=(value3: boolean) =>{
+    setUserExists(value3);
+  }
+   
+  const handleDrawer =() =>{
+    if(token)
+    {
+      toggleUserExistsDrawer(true);
+    }
+    else
+    {
+      toggleUserDrawer(true);
+    }
   }
 
   const handleTabMouseOver = (index: number) => {
@@ -93,10 +113,14 @@ const Appbar2 = () => {
             <IconButton sx={{ color: 'black' }}><Icon icon="gridicons:search" width="27" height="27" /></IconButton>
           </Box>
           <Box sx={{ display: { xs: 'none', lg: 'block', marginRight: '15px' } }}>
-            <IconButton onClick={() => toggleUserDrawer(true)} sx={{ color: 'black' }}> <Icon icon="pajamas:user" width="23" height="23" /> </IconButton>
+            <IconButton onClick={handleDrawer} sx={{ color: 'black' }}> <Icon icon="pajamas:user" width="23" height="23" /> </IconButton>
           </Box>
+          
           <Drawer anchor="right" open={userDrawerOpen} onClose={() => toggleUserDrawer(false)}>
             <Authentication />
+          </Drawer>
+          <Drawer anchor="right" open={userExists} onClose={()=> toggleUserExistsDrawer(false)}>
+            <UserExists/>
           </Drawer>
           <Box sx={{ marginRight: { xs: '13px', lg: '100px' } }}>
             <IconButton sx={{ color: 'black' }}><Icon icon="flowbite:shopping-bag-outline" width="27" height="27" /></IconButton>
