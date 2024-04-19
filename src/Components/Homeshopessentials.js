@@ -1,16 +1,20 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
+import { Link } from 'react-router-dom'; 
 import Imagewithzoom from './ImageWithZoom';
 
 const Homeshopessentials = () => {
     const images = [
         {
             imageurl: "https://dearpet.in/cdn/shop/files/puppy_phone_view_1024x1024_crop_center.jpg?v=1623695625",
+            link: "/PuppyPage",
         },
         {
             imageurl: "https://dearpet.in/cdn/shop/files/kitten_phone_view_1024x1024_crop_center.jpg?v=1623695639",
+            link: "", 
         },
     ];
+
     return (
         <>
             <Grid container sx={{ justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
@@ -20,21 +24,18 @@ const Homeshopessentials = () => {
                             Shop For Essentials
                         </Typography>
                     </Grid>
-                    <Grid container sx={{ justifyContent: 'center', }}>
+                    <Grid container sx={{ justifyContent: 'center' }}>
                         {images.map((item, index) => (
-                            <Grid item xs={12} sm={5.5} key={index} sx={{ margin: { sm: '0px 10px', md: '0px 15px', lg: '0px 25px' } }} >
-                                <Imagewithzoom src={item.imageurl} alt="image not found" />
-
+                            <Grid item xs={12} sm={5.5} key={index} sx={{ margin: { sm: '0px 10px', md: '0px 15px', lg: '0px 25px' } }}>
+                                <Link to={item.link}> 
+                                    <Imagewithzoom src={item.imageurl} alt="image not found" />
+                                </Link>
                             </Grid>
                         ))}
                     </Grid>
                 </Grid>
             </Grid>
-
-
-
         </>
-
     );
 }
 

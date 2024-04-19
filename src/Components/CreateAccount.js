@@ -9,7 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const CreateAccount = () => {
   const [formdata, setFormdata] = useState({ name: '', lastname: '', email: '', password: '' });
   const [errors, setErrors] = useState({ name: '', lastname: '', email: '', password: '', dataExist: '' });
+  const [username,setUserName] =useState('');
   const navigate = useNavigate();
+  const token=localStorage.getItem('accessToken');
+  console.log("create account",token);
 
  
 
@@ -101,9 +104,27 @@ const CreateAccount = () => {
     }
   };
 
+  useEffect(() =>{
+    auth.onAuthStateChanged((user)=>{
+      if(user)
+      {
+        setUserName(user.displayName);
+        if (user.displayName === null) {
+          const userEmail = user.email;
+          const username = userEmail.split("@")[0];
+          console.log(username);
+          setUserName(username);
+        }
+      }
+
+    });
+   
+   }, []);
+
   return (
     <>
-    <Grid container sx={{ justifyContent: 'center' }}>
+    {!token ?(
+      <Grid container sx={{ justifyContent: 'center' }}>
 
       <Grid item sx={{ width: '85%', justifyContent: 'center', marginTop: { xs: '20px', md: '20px' }, marginBottom: { xs: '10px' } }}>
         <Typography sx={{ marginBottom: { xs: '10px' }, fontSize: { xs: '10px', sm: '12px' }, fontWeight: '200' }}>
@@ -127,6 +148,21 @@ const CreateAccount = () => {
         <Box sx={{ marginTop: { xs: '20px', md: '20px' }, color: 'black' }}>{errors.dataExist && <Typography color="error">{errors.dataExist}</Typography>} <Button onClick={handleSubmission} sx={{ color: 'black', fontWeight: 700, borderColor: 'black' }} variant='outlined'> CREATE AN ACCOUNT</Button></Box>
       </Grid>
     </Grid>
+    ):(<Grid container sx={{justifyContent:'center',marginTop:'15px'}}>
+       <Grid item width={'90%'} >
+        <Typography sx={{fontSize:'18px',fontWeight:'700',color:'#070112',letterSpacing:'0.4px',marginTop:'15px'}}>MY ACCOUNT</Typography>
+        <Typography sx={{fontSize:'15px',fontWeight:'700',color:'#070112',letterSpacing:'0.6px',marginTop:'50px'}}>ORDER HISTORY</Typography>
+        <Divider sx={{marginTop:'8px'}}></Divider>
+        <Typography sx={{marginTop:'20px'}}>You haven't placed any orders yet.</Typography>
+        <Typography sx={{fontSize:'15px',fontWeight:'700',color:'#070112',letterSpacing:'0.4px',marginTop:'50px'}}>ACCOUNT DETAILS</Typography>
+        <Divider sx={{marginTop:'8px'}}></Divider>
+         <Typography sx={{fontSize:'13px',letterSpacing:'0.7px',marginTop:'20px'}}>{username}</Typography>
+         <Typography sx={{fontSize:'14px',letterSpacing:'0.7px',marginTop:'20px'}}>India</Typography>
+         <Button sx={{backgroundColor:'#070112',fontWeight:'bold',letterSpacing:'0.7px',color:'#FFFFFF',borderRadius:'0px',marginTop:'50px',marginBottom:'50px'}}>VIEW ADDRESS{' (1)'}</Button>
+
+       </Grid>
+    </Grid>)}
+    
      <ToastContainer />
      </>
   );

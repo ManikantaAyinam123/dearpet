@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth,google,github } from '../firebase';
+
+import {signInWithPopup} from 'firebase/auth'
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,7 +22,7 @@ const Authentication = (props) => {
         setSigninData({ ...signindata, [e.target.name]: e.target.value });
     };
 
-
+//Login
     const handleLogin = async() => {
         let dataIsValid = true;
         const errormsgs = { email: '', password: '', isUserExist: '' };
@@ -89,6 +91,56 @@ const Authentication = (props) => {
         
          
     }
+    //Google Authentication
+    const handleGoogleAuthentication =()=>{
+        signInWithPopup(auth,google)
+        .then((userCredential)=>{
+           
+            const token = userCredential.user.getIdToken();
+        
+            localStorage.setItem('accessToken', token);
+            console.log(token);
+            console.log("google data",userCredential);
+           
+            setFormClose(true);
+            toast.success('Login Successfully!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+                });
+        })
+       .catch((error)=>{
+        console.log("Error google Sign in",error);
+       })
+    }
+//Github Authentication
+ const handelGithubAuthentication=()=>{
+    signInWithPopup(auth,github)
+    .then((userCredential)=>{
+        const token =userCredential.user.getIdToken();
+        console.log("github user",userCredential.user);
+        localStorage.setItem('accessToken',token);
+        console.log("token github",token);
+        setFormClose(true);
+        toast.success('Login Successfully!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+            });
+    })
+ }
     useEffect(() => {
         if (formClose) {
 
@@ -100,10 +152,10 @@ const Authentication = (props) => {
     return (
         <>
             {!formClose &&
-                <Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px', position: 'relative', marginTop: {} }}>
-                    <Box sx={{ display: 'flex', position: 'absolute', top: '20px', right: '30px', marginBottom: '50px', fontWeight: 700 }}> <IconButton onClick={() => setFormClose(true)}> <Icon icon="iconoir:cancel" width="18" height="18" /><Typography sx={{ fontSize: '12px', fontWeight: 500, ml: '2px' }}>
-                        CLOSE</Typography></IconButton></Box>
-                    <Box sx={{ mt: '50px' }}> <Typography sx={{ fontSize: '13px', fontWeight: 700, }}>CUSTOMER LOGIN:</Typography></Box>
+                <Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px',border:'1px solid black',postion:'absolute', marginTop: {} }}>
+                    <Grid item sx={{ display: 'flex',justifyContent:'end', top: '0px', right: '0px', marginBottom: '0px', fontWeight: 700 }}> <IconButton onClick={() => setFormClose(true)}> <Icon icon="iconoir:cancel" width="18" height="18" /><Typography sx={{ fontSize: '12px', fontWeight: 700, ml: '2px' }}>
+                        CLOSE</Typography></IconButton></Grid>
+                    <Box sx={{ mt: '40px' }}> <Typography sx={{ fontSize: '13px', fontWeight: 700, }}>CUSTOMER LOGIN:</Typography></Box>
                     <Divider sx={{ mt: 2 }} />
                     <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
 
@@ -129,7 +181,8 @@ const Authentication = (props) => {
                                     color: '#000000',
                                     border: '1px solid #000000',
                                     fontWeight: 550,
-                                    marginTop: '20px'
+                                    marginTop: '20px',
+                                    '&:hover':{backgroundColor:'black',color:'white'}
                                 }}
 
                             >
@@ -152,12 +205,21 @@ const Authentication = (props) => {
                                     backgroundColor: '#232323',
                                     color: '#FFFFFF',
                                     border: '1px solid #000000',
+                                    '&:hover':{color:'black',backgroundColor:'#FFFFFF',border:' 1px solid black'}
                                 
                                 }}
                             >
                                 CREATE AN Account
                             </Button>
                         </Grid>
+                        <Grid item sx={{display:'flex',alignItems:'center',marginTop:'20px'}}>
+                        <Divider sx={{ flexGrow: 0.5, backgroundColor: { xs: '#FFFFFF'},marginRight:'10px' }} />
+                        <Typography sx={{fontSize:'20px'}}>or</Typography>
+                        <Divider sx={{ flexGrow: 0.5, backgroundColor: { xs: '#FFFFFF'},marginLeft:'10px' }} />
+
+                        </Grid>
+                        <Button onClick={handleGoogleAuthentication} sx={{marginTop:'30px',width:'350px',border:'1px solid black' ,color:'black',letterSpacing:'0.1em',gap:'10px',}}><Icon sx={{marginLeft:'20px !important'}} icon="flat-color-icons:google" width="24" height="24" /><span sx={{marginLeft:'10px !important'}}>Continue With Google</span></Button>
+                        <Button onClick={handelGithubAuthentication} sx={{marginTop:'30px',width:'350px',border:'1px solid black' ,color:'#FFFFFF',letterSpacing:'0.1em',gap:'10px',backgroundColor:'black','&:hover':{color:'black'}}}><Icon icon="mdi:github" width="24" height="24" />Continue With Github</Button>
                     </Grid>
 
                 </Grid>

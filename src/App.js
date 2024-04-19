@@ -6,6 +6,7 @@ import CreateAccountPage from './Pages/CreateAccountPage';
 import SignInMobilePage from './Pages/SignInMobilePage';
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PuppyPage from './Pages/PuppyPage';
 
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/CreateAccountPage' element={<CreateAccountPage/>}/>
           <Route path='/SignInMobilePage' element={<SignInMobilePage/>}/>
+          <Route path='/PuppyPage' element={<PuppyPage/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer />
