@@ -4,7 +4,7 @@ import React from 'react'
 const PuppyLifeStages = () => {
     return (
         <Grid container justifyContent={'center'} marginTop={'20px'} marginBottom={'50px'}>
-            <Grid   item sx={{width:{xs:'90%',sm:'93%'}}}  justifyContent={'center'} textAlign={'center'}>
+            <Grid   item sx={{width:{xs:'90%',sm:'85%'}}}  justifyContent={'center'} textAlign={'center'}>
                 <Typography sx={{ fontSize: {xs:'25px',sm:'30px', md: '36px' }, fontWeight: '700', color: '#333333', lineHeight: '100%',marginTop:'20px' }}>Life Stages</Typography>
                 <Grid container sx={{ display: 'flex',marginTop:'20px'  }}>
                     <Grid xs={12} sm={4} md={4} >
