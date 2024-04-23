@@ -11,7 +11,7 @@ const Homeshopessentials = () => {
         },
         {
             imageurl: "https://dearpet.in/cdn/shop/files/kitten_phone_view_1024x1024_crop_center.jpg?v=1623695639",
-            link: "", 
+            link: "/KittenPage", 
         },
     ];
 

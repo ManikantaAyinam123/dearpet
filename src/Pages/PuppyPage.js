@@ -6,6 +6,8 @@ import PuppyLifeStages from '../Components/PuppyLifeStages'
 import PuppyCart from '../Components/PuppyCart'
 import PuppyCare from '../Components/PuppyCare'
 import PuppyMoreProducts from '../Components/PuppyMoreProducts'
+import SwiperPuppy from '../Components/SwiperPuppy'
+import Footer from '../Components/Footer'
 
 const PuppyPage = () => {
   return (
@@ -17,6 +19,8 @@ const PuppyPage = () => {
    <PuppyCart/>
    <PuppyCare/>
    <PuppyMoreProducts/>
+   <Footer/>
+   
    </>
   )
 }
