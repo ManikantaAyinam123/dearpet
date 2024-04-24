@@ -81,7 +81,7 @@ const Appbar2 = () => {
           <Box sx={{ position: 'relative', }}>
             <Box>
               <Tabs value={-1} aria-label="basic tabs example">
-                <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="DOG" onMouseOver={() => handleTabMouseOver(0)} />
+                <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="DOG" href="/DogPage" onMouseOver={() => handleTabMouseOver(0)} />
                 <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="CAT" onMouseOver={() => handleTabMouseOver(1)} />
                 <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="GROOMING" onMouseOver={() => handleTabMouseOver(2)} />
                 <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="BLOG" onMouseOver={() => handleTabMouseOver(3)} />

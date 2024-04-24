@@ -8,6 +8,7 @@ import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PuppyPage from './Pages/PuppyPage';
 import KittenPage from './Pages/KittenPage';
+import DogPage from './Pages/DogPage';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/SignInMobilePage' element={<SignInMobilePage/>}/>
           <Route path='/PuppyPage' element={<PuppyPage/>}/>
           <Route path='/KittenPage' element={<KittenPage/>}/>
+          <Route path='/DogPage' element={<DogPage/>}></Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer />
