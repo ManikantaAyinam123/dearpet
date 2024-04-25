@@ -1,10 +1,32 @@
-import { Box, Button, Card, CardContent, Checkbox, Divider, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, Checkbox, Divider, Drawer, Grid, Typography, styled } from '@mui/material'
+import IconButton from '@mui/material/IconButton';
 import React, { useState } from 'react'
 import { Icon } from "@iconify/react";
+import LinearProgress from '@mui/material/LinearProgress';
 import { Check } from '@mui/icons-material';
+import '../App.css';
 
 const KittenCards = () => {
     const [hoveredImage, setHoveredImage] = useState(null);
+    const [drawerOpen, setDrawerOpen] = useState();
+    const [selectImage, setSelectImage] = useState();
+    const handleAddImage = (index) => {
+        setSelectImage(images[index]);
+
+        const displayImg = images[index].imgurl
+
+        localStorage.setItem('imgDisplay', displayImg);
+        console.log("localstorage img", localStorage.getItem('imgDisplay'))
+        localStorage.setItem('name',images[index].productName);
+        localStorage.setItem('price',images[index].price);
+        console.log('name',localStorage.getItem('name'));
+       
+
+
+        setDrawerOpen(true);
+
+    }
+
     const images = [
         {
             imgurl: 'https://dearpet.in/cdn/shop/products/1_d92fa4b7-75a5-44c9-99c4-abe1e70f5913.jpg?v=1624271491',
@@ -93,7 +115,7 @@ const KittenCards = () => {
         <Grid container justifyContent="center" marginTop={4}>
             <Grid container item width="90%">
                 <Grid item md={2} sx={{ height: '300px', display: { xs: 'none', lg: 'block' } }}>
-                    <Typography sx={{ fontSize: '20px', backgroundColor: '#EEEEEE', width: '100%', height: '30px', color: '#333333',padding:'3px 3px' }}>Filter by:</Typography>
+                    <Typography sx={{ fontSize: '20px', backgroundColor: '#EEEEEE', width: '100%', height: '30px', color: '#333333', padding: '3px 3px' }}>Filter by:</Typography>
                     {sidebarContent.map((item, index) => (
                         <Grid key={index}>
                             <Box sx={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -154,11 +176,59 @@ const KittenCards = () => {
                                     </Typography>
                                     <Grid sx={{ marginTop: '10px', display: 'flex' }}>
                                         <Button sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, border: '1px solid black', width: '45%', padding: '3px', color: '#333333', '&:hover': { color: 'black' }, textTransform: 'none' }}>Quick View</Button>
-                                        <Button sx={{ border: '1px solid black', width: { xs: '100%', sm: '100%', md: '45%' }, padding: '3px', color: '#FFFFFF', backgroundColor: '#676172', '&:hover': { color: 'black' }, textTransform: 'none', marginLeft: { xs: '0px', sm: '0px', md: '10px' } }}>Add To Bag</Button>
+                                        <Button onClick={() => { handleAddImage(index) }} sx={{ border: '1px solid black', width: { xs: '100%', sm: '100%', md: '45%' }, padding: '3px', color: '#FFFFFF', backgroundColor: '#676172', '&:hover': { color: 'black' }, textTransform: 'none', marginLeft: { xs: '0px', sm: '0px', md: '10px' } }}>Add To Bag</Button>
                                     </Grid>
                                 </Grid>
                             </Grid>
                             <Divider sx={{ marginBottom: '8px', display: { sm: 'none' }, width: '100%', height: '5px', backgroundColor: '#eaeaea' }} />
+                            <Drawer
+                                anchor='right'
+                                open={drawerOpen}
+                                onClose={() => { setDrawerOpen(false) }}
+                                ModalProps={{ BackdropProps: { invisible: true, style: { backgroundColor: 'rgba(0, 0, 0, 0.1)' } } }}
+                            >
+                                <Grid width="450px" backgroundColor="#EEEEEE">
+                                    <Box sx={{ display: 'flex', backgroundColor: '#6534AC', padding: '5px', textAlign: 'center' }}>
+                                        <IconButton onClick={() => { setDrawerOpen(false) }}><Icon icon="formkit:caretleft" width="20" height="20" style={{ color: '#FFFFFF' }} /></IconButton>
+                                        <Typography sx={{ color: '#FFFFFF', fontSize: '15px', marginLeft: '130px', marginTop: '8px' }}>My shopping bag(1)</Typography>
+
+                                    </Box>
+
+                                    <LinearProgress sx={{position:'relative', marginTop: '20px', height: '16px', margin: '15px', borderRadius: '5px', backgroundColor: '#6534AC' }} variant="determinate" value={0} />
+                                    <Typography sx={{position:'absolute',top:'56px',left:'200px',color:'#FFFFFF'}}>100%</Typography>
+                                    
+                                    <Grid container sx={{ display: 'flex' ,height:'120px',backgroundColor:'#FFFFFF',padding:'10px',margin:'5px'}} >
+                                        <Grid item xs={4} sx={{padding:'10px' }} >
+                                        <img width='90px' height='90px' src={localStorage.getItem('imgDisplay')}></img>
+                                        </Grid>
+                                        <Grid item xs={8} sx={{ }} >
+                                            <Typography sx={{fontSize:'12px',color:'4C4C4C',letterSpacing:'0.2px',marginTop:'5px'}}>{localStorage.getItem('name')}</Typography>
+                                            <Grid sx={{display:'flex',marginTop:'3px'}} gap={2}>
+                                            <Typography sx={{fontSize:'12px',fontWeight:'bold',letterSpacing:'0.3px'}}>Standard</Typography>
+                                            <Icon icon="fluent:text-bullet-list-square-edit-24-filled" width="20" height="20"  style={{color: '#676172'}} />
+                                            </Grid>
+                                            <Grid sx={{display:'flex',justifyContent:'space-between',marginTop:'3px'}}>
+                                            <Typography sx={{fontSize:'12px',fontWeight:'bold',letterSpacing:'0.3px'}}>Rs {localStorage.getItem('price')}.00</Typography>
+                                            <Icon icon="material-symbols-light:delete-outline" width="20" height="20"  style={{color:'#676172'}} />     
+                                            </Grid>
+                                            <Grid sx={{display:'flex',justifyContent:'space-around',height:'20px',width:'65px',border:'1px solid #6534AC',alignItems:'center',marginTop:'3px'}}>
+                                               <Typography>-</Typography>
+                                               <Typography>1</Typography>
+                                               <Typography>+</Typography>
+
+                                            </Grid>
+                            
+                                        </Grid>
+
+                                    </Grid>
+                                    <Grid sx={{marginTop:'460px'}} >
+                                      <Button href="/CheckoutPage" sx={{backgroundColor:'#6534AC',color:'#FFFFFF',justifyContent:'center',width:'100%',letterSpacing:'0.3',borderRadius:'0px','&:hover':{backgroundColor:'#6534AC',color:'#FFFFFF',}}}>Proceed to checkout</Button>
+                                    </Grid>
+                             
+                                </Grid>
+                            </Drawer>
+
+
                         </React.Fragment>
                     ))}
                 </Grid>

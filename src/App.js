@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PuppyPage from './Pages/PuppyPage';
 import KittenPage from './Pages/KittenPage';
 import DogPage from './Pages/DogPage';
+import CheckoutPage from './Pages/CheckoutPage';
 
 
 
@@ -22,7 +23,8 @@ function App() {
           <Route path='/SignInMobilePage' element={<SignInMobilePage/>}/>
           <Route path='/PuppyPage' element={<PuppyPage/>}/>
           <Route path='/KittenPage' element={<KittenPage/>}/>
-          <Route path='/DogPage' element={<DogPage/>}></Route>
+          <Route path='/DogPage' element={<DogPage/>}/>
+          <Route path='/CheckoutPage' element={<CheckoutPage/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer />
