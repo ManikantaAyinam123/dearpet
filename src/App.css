@@ -56,6 +56,43 @@
   transform: scaleX(1);
   background-color: #000; 
 }
+/* Hide default Swiper navigation buttons */
+
+
+/* Adjust the size and style of Swiper navigation arrows */
+.custom-swiper .swiper-button-prev::after,
+.custom-swiper .swiper-button-next::after {
+  font-size: 14px; /* Adjust the font size as per your preference */
+  width: 50px; /* Adjust the width as per your preference */
+  height: 30px; /* Adjust the height as per your preference */
+  
+  font-weight:900;
+  color: black;
+  border-radius: 50%; /* Make the arrow shape circular */
+  border: 1px solid grey; /* Add a black border around the arrow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  /* Add any other styles you want for the sticky app bar */
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
