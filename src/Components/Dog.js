@@ -1,6 +1,9 @@
 import React from 'react'
 import {  Grid, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 const Dog = () => {
+
+  const navigate=useNavigate();
  
   return (
    <Grid container sx={{width:'100%',display:'flex',justifyContent:'space-around',}}>
@@ -14,8 +17,8 @@ const Dog = () => {
        
        </Grid>
        <Grid item>
-       <Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Dog Accessories</Typography>
-       <Typography  sx={{mb:1,fontSize:'11px',fontWeight:300}}>Collar,Leash&Harness</Typography>
+       <Typography onClick={()=> {navigate('/DogTabsPage/dogaccessories')}} sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Dog Accessories</Typography>
+       <Typography onClick={()=> {navigate('/DogTabsPage/collar,leash&harness')}}  sx={{mb:1,fontSize:'11px',fontWeight:300}}>Collar,Leash&Harness</Typography>
        <Typography  sx={{mb:1,fontSize:'11px',fontWeight:300}}>Bow Tie</Typography>
        <Typography  sx={{fontSize:'11px',fontWeight:550,mt:3,mb:3 }}>Travel & Utilities</Typography>
        <Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Dear Pet Collections</Typography>
