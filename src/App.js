@@ -11,6 +11,7 @@ import KittenPage from './Pages/KittenPage';
 import DogPage from './Pages/DogPage';
 import CheckoutPage from './Pages/CheckoutPage';
 import DogTabsPage from './Pages/DogTabsPage';
+import DetailsPage from './Pages/DetailsPage';
 
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/DogPage' element={<DogPage/>}/>
           <Route path='/CheckoutPage' element={<CheckoutPage/>}/>
           <Route path='/DogTabsPage/:id' element={<DogTabsPage/>}/>
+          <Route path='/DetailsPage' element={<DetailsPage/>}/>
           
         </Routes>
       </BrowserRouter>

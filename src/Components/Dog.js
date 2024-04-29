@@ -6,7 +6,7 @@ const Dog = () => {
   const navigate=useNavigate();
  
   return (
-   <Grid container sx={{width:'100%',display:'flex',justifyContent:'space-around',}}>
+   <Grid container sx={{width:'100%',display:'flex',justifyContent:'space-around',cursor:'pointer'}}>
        <Grid item>
         <Typography  sx={{fontSize:'11px',fontWeight:550, }}>Dog Food</Typography>
         <Typography  sx={{mt:3,mb:3,fontSize:'11px',fontWeight:550}} >Dog Toys</Typography>
