@@ -16,9 +16,7 @@ import DetailsPage from './Pages/DetailsPage';
 
 
 function App() {
-  const pram = useParams();
-  const routename = pram.id;
-  console.log('this is ----', routename);
+  
   return (
     <>
       <BrowserRouter>

@@ -23,7 +23,7 @@ const DogTabsComponent = () => {
     console.log("handleDetailsPage Data",Data)
     localStorage.setItem('magnifierData', JSON.stringify(Data));
     console.log("handleDetailsPage Data localStorage",localStorage.getItem('magnifierData'));
-    // navigate('/DetailsPage');
+    navigate('/DetailsPage');
 
   }
   console.log("router",router);
@@ -38,14 +38,7 @@ const DogTabsComponent = () => {
 
   return (
     <>
-      {/* { original && original.map((item) => (
-        <div >
-          <Typography>Status: {item.status}</Typography>
-          <Typography onClick={() => handlepress(item.aboutcard)}>Name: {item.name}</Typography>
-          <img src={item.imgurl} height={'auto'} width={'100%'}></img>
-        </div>
-      ))} */}
-           <Grid container justifyContent="center" marginTop={4}>
+        <Grid container justifyContent="center" marginTop={4}>
             <Grid container item width="90%">
                 <Grid item md={2} sx={{ height: '300px', display: { xs: 'none', lg: 'block' } }}>
                     <Typography sx={{ fontSize: '20px', backgroundColor: '#EEEEEE', width: '100%', height: '30px', color: '#333333', padding: '3px 3px' }}>Filter by:</Typography>
@@ -69,11 +62,6 @@ const DogTabsComponent = () => {
                             <Divider sx={{ width: '100%', marginTop: '10px', backgroundColor: '#333333' }} />
                         </Grid>
                     ))}
-
-
-
-
-
                 </Grid>
               
                 <Grid container item lg={10} >
@@ -102,7 +90,7 @@ const DogTabsComponent = () => {
                                         onMouseLeave={() => setHoveredImage(null)}
                                         src={hoveredImage === index ? item.innerImages[0].allImages[0].imgurl : item.imgurl}
                                       
-                                        onClick={handleDetailsPage(item)}
+                                        onClick={() => handleDetailsPage(item)}
                                       
                                         alt="Slide"
                                     />
