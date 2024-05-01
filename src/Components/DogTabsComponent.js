@@ -65,14 +65,14 @@ const DogTabsComponent = () => {
                 </Grid>
               
                 <Grid container item lg={10} >
-                  <Grid container xs={12} sx={{justifyContent:'space-between',padding:'0px 50px',fontSize:'22px',color:'2F2E2E',marginBottom:'15px'}}>
+                  <Grid container xs={12} sx={{justifyContent:'space-between',alignItems:'center',padding:{xs:'0px',md:'0px 50px'},fontSize:{xs:'12px',sm:'18px',md:'22px'},color:'2F2E2E',marginBottom:'15px'}}>
                     <Grid item>
                     {router === 'dogaccessories' ? 'Dog Accessories' : 'Dog Collar, Leash & Harness'}
                     </Grid >
                     <Grid item sx={{display:'flex',alignItems:'center',padding:'5px 10px',backgroundColor:'#EEEEEE'}}>
                     
-                      <Typography sx={{fontSize:'18px'}}>Sort by</Typography>
-                      <Typography sx={{marginLeft:'40px',marginRight:'20px',fontSize:'15px'}}>Best Selling</Typography>
+                      <Typography sx={{fontSize:{xs:'10px',sm:'15px',md:'18px'}}}>Sort by</Typography>
+                      <Typography sx={{marginLeft:{xs:'3px',sm:'15px',md:'50px'},marginRight:{xs:'3px',sm:'15px',md:'20px'},fontSize:{xs:'10px',sm:'14px',md:'15px'}}}>Best Selling</Typography>
                       <Icon icon="ri:arrow-drop-down-line" width="20" height="20"  style={{color:'#00000'}} />
                 
                     </Grid>
