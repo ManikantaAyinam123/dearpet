@@ -15,23 +15,31 @@ import Grid from '@mui/material/Grid';
 import { Icon } from "@iconify/react";
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function MenuContent() {
     const navigate = useNavigate();
     const token = localStorage.getItem('accessToken');
-    const [drawerClose,setDrawerClose]= useState(false);
-    const [drawerOpen, setDrawerOpen] =useState(false);
+    const [drawerClose, setDrawerClose] = useState(false);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [dogAccessoriesDrawerOpen, setDogAccessoriesDrawerOpen] = useState(false);
     const handleClick = () => {
         setDrawerOpen(true);
     };
     const handleClose = () => {
         setDrawerOpen(false);
     };
+    const handleDogAccessoriesDrawerOpen = () => {
+        setDogAccessoriesDrawerOpen(true);
+    };
+    const handleDogAccessoriesDrawerClose = () => {
+        setDogAccessoriesDrawerOpen(false);
+    };
 
-    const handleSignOut=() =>{
+
+    const handleSignOut = () => {
         localStorage.removeItem('accessToken');
-       setDrawerClose(true);
+        setDrawerClose(true);
     }
     useEffect(() => {
         if (drawerClose) {
@@ -42,109 +50,180 @@ export default function MenuContent() {
 
     return (
         <>
-        { !drawerClose &&(
-      
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
-                    <Grid item >
-                        <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>DOG</Typography>
-                    </Grid>
-                    <Grid item >
-                        <Tooltip title="Account settings">
-                            <IconButton onClick={handleClick} size="small">
-                                {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-                                <Icon icon="eva:arrow-ios-forward-outline" width="22" height="22" />
-                            </IconButton>
-                        </Tooltip>
-                    </Grid>
-                </Grid>
-                <Divider />
-                <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
-                    <Grid item >
-                        <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>CAT</Typography>
-                    </Grid>
-                    <Grid item >
-                        <Tooltip title="Account settings">
-                            <IconButton onClick={handleClick} size="small">
-                                {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-                                <Icon icon="eva:arrow-ios-forward-outline" width="22" height="22" />
-                            </IconButton>
-                        </Tooltip>
-                    </Grid>
-                </Grid>
-                <Divider />
-                <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
-                    <Grid item >
-                        <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>GROMMING</Typography>
-                    </Grid>
+            {!drawerClose && (
 
-                </Grid>
-                <Divider />
-                <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
-                    <Grid item >
-                        <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>BLOG</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
+                        <Grid item >
+                            <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>DOG</Typography>
+                        </Grid>
+                        <Grid item >
+
+                            <IconButton onClick={handleClick} size="small">
+                                {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
+                                <Icon icon="eva:arrow-ios-forward-outline" width="22" height="22" />
+                            </IconButton>
+
+                        </Grid>
                     </Grid>
                     <Divider />
-                </Grid>
-                <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
-                    <Grid item >
-                        {!token ? (
-                            <Link to="/SignInMobilePage" style={{ textDecoration: 'none' }}>
+                    <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
+                        <Grid item >
+                            <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>CAT</Typography>
+                        </Grid>
+                        <Grid item >
+
+                            <IconButton onClick={handleClick} size="small">
+                                {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
+                                <Icon icon="eva:arrow-ios-forward-outline" width="22" height="22" />
+                            </IconButton>
+
+                        </Grid>
+                    </Grid>
+                    <Divider />
+                    <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
+                        <Grid item >
+                            <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>GROMMING</Typography>
+                        </Grid>
+
+                    </Grid>
+                    <Divider />
+                    <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
+                        <Grid item >
+                            <Typography sx={{ fontSize: '13px', fontWeight: 700 }}>BLOG</Typography>
+                        </Grid>
+                        <Divider />
+                    </Grid>
+                    <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
+                        <Grid item >
+                            {!token ? (
+                                <Link to="/SignInMobilePage" style={{ textDecoration: 'none' }}>
+                                    <Typography sx={{ fontSize: '13px', textDecoration: 'none !important', color: 'black' }}>
+                                        Sign In
+                                    </Typography>
+                                </Link>
+                            ) : (<Button onClick={handleSignOut} sx={{ color: 'black', fontSize: '12px', paddingLeft: '0px' }}>Log Out</Button>)}
+
+                        </Grid>
+
+                    </Grid>
+                    <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
+                        <Grid item >
+                            {!token ? (<Link to="/CreateAccountPage" style={{ textDecoration: 'none' }}>
                                 <Typography sx={{ fontSize: '13px', textDecoration: 'none !important', color: 'black' }}>
-                                    Sign In
+                                    Create an account
                                 </Typography>
-                            </Link>
-                        ) : (<Button onClick={handleSignOut} sx={{color:'black',fontSize:'12px',paddingLeft:'0px'}}>Log Out</Button>)}
-
-                    </Grid>
-
-                </Grid>
-                <Grid sx={{ minWidth: 280, padding: '10px' }} container justifyContent="space-between" alignItems="center">
-                    <Grid item >
-                        {!token ? (<Link to="/CreateAccountPage" style={{ textDecoration: 'none' }}>
-                            <Typography sx={{ fontSize: '13px', textDecoration: 'none !important', color: 'black' }}>
-                                Create an account
-                            </Typography>
-                        </Link>):(<Link to="/CreateAccountPage"style={{ textDecoration: 'none' }}> <Typography sx={{ fontSize: '13px', textDecoration: 'none !important', color: 'black' }}>
-                               My Account
+                            </Link>) : (<Link to="/CreateAccountPage" style={{ textDecoration: 'none' }}> <Typography sx={{ fontSize: '13px', textDecoration: 'none !important', color: 'black' }}>
+                                My Account
                             </Typography></Link>)}
+                        </Grid>
+
                     </Grid>
 
-                </Grid>
+                    <Drawer
+                        open={drawerOpen}
+                        onClose={handleClose}
+                    >
+                        <Grid container justifyContent={'center'}>
+                            <Grid item width='280px' height='1000px'>
+                                <Box sx={{ display: 'flex', padding: '10px 10px', backgroundColor: '#F8F8F8', }}>
+                                    <Icon onClick={handleClose} icon="uil:angle-left-b" width="20" height="20" style={{ color: 'black' }} />
+                                    <Typography sx={{ marginLeft: '87px', fontSize: '15px', fontWeight: '700' }}>DOG</Typography>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography sx={{ fontSize: '12px' }}>ALL DOG</Typography>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography sx={{ fontSize: '12px', }}>DOG FOOD</Typography>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '5px 20px 5px 25px', justifyContent: 'space-between', alignItems: 'center', display: 'flex' }}  >
+                                    <Typography sx={{ fontSize: '12px', letterSpacing: '0.5px' }}>DOG ACCESSORIES</Typography>
+                                    <IconButton onClick={handleDogAccessoriesDrawerOpen} size="small" >
+                                        <Icon icon="eva:arrow-ios-forward-outline" width="20" height="20" style={{ color: 'grey' }} />
+                                    </IconButton>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px', justifyContent: 'space-between', display: 'flex' }}  >
+                                    <Typography sx={{ fontSize: '12px', letterSpacing: '0.5px' }}>DOG BEDS&CRATES</Typography>
+                                    <Icon icon="eva:arrow-ios-forward-outline" width="20" height="20" style={{ color: 'grey' }} />
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography sx={{ fontSize: '12px', }}>DOG BOWLS</Typography>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography sx={{ fontSize: '12px', }}>DOG TOYS</Typography>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px', justifyContent: 'space-between', display: 'flex' }}  >
+                                    <Typography sx={{ fontSize: '12px', letterSpacing: '0.5px' }}>DOG GROMMING</Typography>
+                                    <Icon icon="eva:arrow-ios-forward-outline" width="20" height="20" style={{ color: 'grey' }} />
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px', justifyContent: 'space-between', display: 'flex' }}  >
+                                    <Typography sx={{ fontSize: '12px', letterSpacing: '0.5px' }}>HYGIENE & CARE</Typography>
+                                    <Icon icon="eva:arrow-ios-forward-outline" width="20" height="20" style={{ color: 'grey' }} />
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography sx={{ fontSize: '12px', }}>TRAVEL & UTILITIES</Typography>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px', justifyContent: 'space-between', display: 'flex' }}  >
+                                    <Typography sx={{ fontSize: '12px', letterSpacing: '0.5px' }}>DEAR PET FAV'S</Typography>
+                                    <Icon icon="eva:arrow-ios-forward-outline" width="20" height="20" style={{ color: 'grey' }} />
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px', justifyContent: 'space-between', display: 'flex' }}  >
+                                    <Typography sx={{ fontSize: '12px', letterSpacing: '0.5px' }}>DEAR PET COLLECTIONS</Typography>
+                                    <Icon icon="eva:arrow-ios-forward-outline" width="20" height="20" style={{ color: 'grey' }} />
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px', justifyContent: 'space-between', display: 'flex' }}  >
+                                    <Typography sx={{ fontSize: '12px', letterSpacing: '0.5px' }}>WINTER COLLECTIONS</Typography>
+                                    <Icon icon="eva:arrow-ios-forward-outline" width="20" height="20" style={{ color: 'grey' }} />
+                                </Box>
+                                <Divider />
 
-                <Drawer
-                    open={drawerOpen}
-                    onClose={handleClose}
-                >
-                    <MenuItem onClick={handleClose}>
-                        <Avatar /> Profile
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Avatar /> My account
-                    </MenuItem>
-                    <Divider />
-                    <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                            <PersonAdd fontSize="small" />
-                        </ListItemIcon>
-                        Add another account
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                            <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                            <Logout fontSize="small" />
-                        </ListItemIcon>
-                        Logout
-                    </MenuItem>
-                </Drawer>
-            </Box>
-       
-    )}
-    </>
+
+
+                            </Grid>
+                        </Grid>
+                    </Drawer>
+                    <Drawer
+
+                        open={dogAccessoriesDrawerOpen}
+                        onClose={handleDogAccessoriesDrawerClose}
+                    >
+                        <Grid container>
+                            <Grid item width={'280px'}>
+                                <Box sx={{ display: 'flex', padding: '10px 10px', backgroundColor: '#F8F8F8', }}>
+                                    <Icon onClick={handleDogAccessoriesDrawerClose} icon="uil:angle-left-b" width="20" height="20" style={{ color: 'black' }} />
+                                    <Typography sx={{ marginLeft: '50px', fontSize: '15px', fontWeight: '700' }}>DOG ACCESSORIES</Typography>
+                                </Box>
+                                <Divider />
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography onClick={()=> {navigate('/DogTabsPage/dogaccessories')}} sx={{ fontSize: '12px', }}>All Dog Accessories</Typography>
+                                </Box>
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography onClick={()=> {navigate('/DogTabsPage/collar,leash&harness')}} sx={{ fontSize: '12px', }}>Collar, Leash & Harness</Typography>
+                                </Box>
+                                <Box sx={{ padding: '10px 25px' }}  >
+                                    <Typography sx={{ fontSize: '12px', }}>Bow Tie</Typography>
+                                </Box>
+                              
+
+                            </Grid>
+
+                        </Grid>
+                    </Drawer>
+                </Box>
+
+            )}
+        </>
     );
 }
