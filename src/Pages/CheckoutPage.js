@@ -1,14 +1,15 @@
-import { Grid } from '@mui/material'
 import React from 'react'
 import Checkout from '../Components/Checkout'
-import Appbar2 from '../Components/Appbar2'
+import Layout from '../Components/Layout'
 
 const CheckoutPage = () => {
   return (
-   <Grid>
-    <Appbar2/>
-    <Checkout/>
-   </Grid>
+    <Layout>
+      <div>
+        <Checkout />
+      </div>
+    </Layout>
+
   )
 }
 

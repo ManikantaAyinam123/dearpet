@@ -38,9 +38,12 @@ const DogTabsComponent = () => {
 
   return (
     <>
-        <Grid container justifyContent="center" marginTop={4}>
+   
+        <Grid container justifyContent="center" >
+        
             <Grid container item width="90%">
-                <Grid item md={2} sx={{ height: '300px', display: { xs: 'none', lg: 'block' } }}>
+               
+                <Grid item md={2} sx={{ height: '300px', display: { xs: 'none', lg: 'block' },marginTop:'35px' }}>
                     <Typography sx={{ fontSize: '20px', backgroundColor: '#EEEEEE', width: '100%', height: '30px', color: '#333333', padding: '3px 3px' }}>Filter by:</Typography>
                     {sidebarContent.map((item, index) => (
                         <Grid key={index}>
@@ -65,7 +68,10 @@ const DogTabsComponent = () => {
                 </Grid>
               
                 <Grid container item lg={10} >
+
+                <Typography sx={{ml:{md:'50px'},mt:{xs:'10px'},color:'#999999', fontSize:'14px'}}>Home {">"} {router}</Typography>
                   <Grid container xs={12} sx={{justifyContent:'space-between',alignItems:'center',padding:{xs:'0px',md:'0px 50px'},fontSize:{xs:'12px',sm:'18px',md:'22px'},color:'2F2E2E',marginBottom:'15px'}}>
+                  
                     <Grid item>
                     {router === 'dogaccessories' ? 'Dog Accessories' : 'Dog Collar, Leash & Harness'}
                     </Grid >
@@ -88,7 +94,7 @@ const DogTabsComponent = () => {
                                         width="100%"
                                         onMouseEnter={() => setHoveredImage(index)}
                                         onMouseLeave={() => setHoveredImage(null)}
-                                        src={hoveredImage === index ? item.innerImages[0].allImages[0].imgurl : item.imgurl}
+                                        src={hoveredImage === index ? item.innerImages[0].allImages[1].imgurl : item.imgurl}
                                       
                                         onClick={() => handleDetailsPage(item)}
                                       

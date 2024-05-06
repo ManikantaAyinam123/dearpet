@@ -1,20 +1,16 @@
-import { Divider, Grid, Typography, Box, TextField, Button, IconButton } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { Icon } from "@iconify/react";
-import { useNavigate } from "react-router-dom";
+import controls from './Import'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth,google,github } from '../firebase';
-
 import {signInWithPopup} from 'firebase/auth'
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const Authentication = (props) => {
-    const [formClose, setFormClose] = useState(false);
-    const [signindata, setSigninData] = useState({ email: '', password: '' });
-    const [errors, setErrors] = useState({ email: '', password: '' });
-    const navigate = useNavigate();
+    const [formClose, setFormClose] = controls.useState(false);
+    const [signindata, setSigninData] = controls.useState({ email: '', password: '' });
+    const [errors, setErrors] = controls.useState({ email: '', password: '' });
+    const navigate = controls.useNavigate();
     // const dbref=ref(db);
 
 
@@ -141,7 +137,7 @@ const Authentication = (props) => {
             });
     })
  }
-    useEffect(() => {
+ controls.useEffect(() => {
         if (formClose) {
 
             window.location.reload();
@@ -152,23 +148,23 @@ const Authentication = (props) => {
     return (
         <>
             {!formClose &&
-                <Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px',border:'1px solid black',postion:'absolute', marginTop: {} }}>
-                    <Grid item sx={{ display: 'flex',justifyContent:'end', top: '0px', right: '0px', marginBottom: '0px', fontWeight: 700 }}> <IconButton onClick={() => setFormClose(true)}> <Icon icon="iconoir:cancel" width="18" height="18" /><Typography sx={{ fontSize: '12px', fontWeight: 700, ml: '2px' }}>
-                        CLOSE</Typography></IconButton></Grid>
-                    <Box sx={{ mt: '40px' }}> <Typography sx={{ fontSize: '13px', fontWeight: 700, }}>CUSTOMER LOGIN:</Typography></Box>
-                    <Divider sx={{ mt: 2 }} />
-                    <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
+                <controls.Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px',border:'1px solid black',postion:'absolute', marginTop: {} }}>
+                    <controls.Grid item sx={{ display: 'flex',justifyContent:'end', top: '0px', right: '0px', marginBottom: '0px', fontWeight: 700 }}> <controls.IconButton onClick={() => setFormClose(true)}> <controls.Icon icon="iconoir:cancel" width="18" height="18" /><controls.Typography sx={{ fontSize: '12px', fontWeight: 700, ml: '2px' }}>
+                        CLOSE</controls.Typography></controls.IconButton></controls.Grid>
+                    <controls.Box sx={{ mt: '40px' }}> <controls.Typography sx={{ fontSize: '13px', fontWeight: 700, }}>CUSTOMER LOGIN:</controls.Typography></controls.Box>
+                    <controls.Divider sx={{ mt: 2 }} />
+                    <controls.Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
 
-                        <Typography sx={{ marginTop: { md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}> Email Address<Box component="span" sx={{ color: '#F1152F' }}>*</Box></Typography>
-                        <TextField InputProps={{ sx: { width: '40ch', height: '38px', borderRadius: 0 } }} placeholder='Email Adress' name="email" type="email" onChange={handleInputChange} />
-                        {errors.email && <Typography color="error">{errors.email}</Typography>}
+                        <controls.Typography sx={{ marginTop: { md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}> Email Address<controls.Box component="span" sx={{ color: '#F1152F' }}>*</controls.Box></controls.Typography>
+                        <controls.TextField InputProps={{ sx: { width: '40ch', height: '38px', borderRadius: 0 } }} placeholder='Email Adress' name="email" type="email" onChange={handleInputChange} />
+                        {errors.email && <controls.Typography color="error">{errors.email}</controls.Typography>}
 
-                        <Typography sx={{ marginTop: { md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Password <Box component="span" sx={{ color: '#F1152F' }}>*</Box></Typography>
-                        <TextField InputProps={{ sx: { width: '40ch', height: '38px', borderRadius: 0 } }} placeholder='Password' name="password" type="password" onChange={handleInputChange} />
-                        {errors.password && <Typography color="error">{errors.password}</Typography>}
-                        <Grid >
+                        <controls.Typography sx={{ marginTop: { md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Password <controls.Box component="span" sx={{ color: '#F1152F' }}>*</controls.Box></controls.Typography>
+                        <controls.TextField InputProps={{ sx: { width: '40ch', height: '38px', borderRadius: 0 } }} placeholder='Password' name="password" type="password" onChange={handleInputChange} />
+                        {errors.password && <controls.Typography color="error">{errors.password}</controls.Typography>}
+                        <controls.Grid >
 
-                            <Button
+                            <controls.Button
                                 onClick={handleLogin}
                                 variant="outlined"
                                 sx={{
@@ -187,14 +183,14 @@ const Authentication = (props) => {
 
                             >
                                 LOGIN
-                            </Button>
-                            {errors.isUserExist && <Typography color="error">{errors.isUserExist}</Typography>}
-                        </Grid>
-                        <Grid item sx={{ mt: 2 }}>
-                            <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Typography>Forgot your password?</Typography></Box>
-                        </Grid>
-                        <Grid sx={{ mt: 2 }}>
-                            <Button onClick={() => navigate('/CreateAccountPage')}
+                            </controls.Button>
+                            {errors.isUserExist && <controls.Typography color="error">{errors.isUserExist}</controls.Typography>}
+                        </controls.Grid>
+                        <controls.Grid item sx={{ mt: 2 }}>
+                            <controls.Box sx={{ display: 'flex', justifyContent: 'center' }}> <controls.Typography>Forgot your password?</controls.Typography></controls.Box>
+                        </controls.Grid>
+                        <controls.Grid sx={{ mt: 2 }}>
+                            <controls.Button onClick={() => navigate('/CreateAccountPage')}
                                 variant="outlined"
                                 sx={{
                                     display: 'flex',
@@ -210,19 +206,19 @@ const Authentication = (props) => {
                                 }}
                             >
                                 CREATE AN Account
-                            </Button>
-                        </Grid>
-                        <Grid item sx={{display:'flex',alignItems:'center',marginTop:'20px'}}>
-                        <Divider sx={{ flexGrow: 0.5, backgroundColor: { xs: '#FFFFFF'},marginRight:'10px' }} />
-                        <Typography sx={{fontSize:'20px'}}>or</Typography>
-                        <Divider sx={{ flexGrow: 0.5, backgroundColor: { xs: '#FFFFFF'},marginLeft:'10px' }} />
+                            </controls.Button>
+                        </controls.Grid>
+                        <controls.Grid item sx={{display:'flex',alignItems:'center',marginTop:'20px'}}>
+                        <controls.Divider sx={{ flexGrow: 0.5, backgroundColor: { xs: '#FFFFFF'},marginRight:'10px' }} />
+                        <controls.Typography sx={{fontSize:'20px'}}>or</controls.Typography>
+                        <controls.Divider sx={{ flexGrow: 0.5, backgroundColor: { xs: '#FFFFFF'},marginLeft:'10px' }} />
 
-                        </Grid>
-                        <Button onClick={handleGoogleAuthentication} sx={{marginTop:'30px',width:'350px',border:'1px solid black' ,color:'black',letterSpacing:'0.1em',gap:'10px',}}><Icon sx={{marginLeft:'20px !important'}} icon="flat-color-icons:google" width="24" height="24" /><span sx={{marginLeft:'10px !important'}}>Continue With Google</span></Button>
-                        <Button onClick={handelGithubAuthentication} sx={{marginTop:'30px',width:'350px',border:'1px solid black' ,color:'#FFFFFF',letterSpacing:'0.1em',gap:'10px',backgroundColor:'black','&:hover':{color:'black'}}}><Icon icon="mdi:github" width="24" height="24" />Continue With Github</Button>
-                    </Grid>
+                        </controls.Grid>
+                        <controls.Button onClick={handleGoogleAuthentication} sx={{marginTop:'30px',width:'350px',border:'1px solid black' ,color:'black',letterSpacing:'0.1em',gap:'10px',}}><controls.Icon sx={{marginLeft:'20px !important'}} icon="flat-color-icons:google" width="24" height="24" /><span sx={{marginLeft:'10px !important'}}>Continue With Google</span></controls.Button>
+                        <controls.Button onClick={handelGithubAuthentication} sx={{marginTop:'30px',width:'350px',border:'1px solid black' ,color:'#FFFFFF',letterSpacing:'0.1em',gap:'10px',backgroundColor:'black','&:hover':{color:'black'}}}><controls.Icon icon="mdi:github" width="24" height="24" />Continue With Github</controls.Button>
+                    </controls.Grid>
 
-                </Grid>
+                </controls.Grid>
             }
             <ToastContainer />
         </>

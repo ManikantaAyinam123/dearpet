@@ -1,6 +1,6 @@
 import React from 'react'
-import { Typography, Grid, Divider } from '@mui/material'
 import Imagewithzoom from './ImageWithZoom'
+import controls from './Import'
 
 const Homecustomisable2 = () => {
     const images = [
@@ -22,42 +22,42 @@ const Homecustomisable2 = () => {
     ];
 
     return (
-        <Grid container sx={{ backgroundColor: '#FFFFFF' }}>
-            <Grid container sx={{ display: 'flex', alignItems: 'center', backgroundColor: { xs: '#6534AC', sm: '#FFFFFF' }, height: { xs: '50px' }, marginTop: { xs: 3, sm: 4, lg: 5 }, marginBottom: { xs: 3, sm: 4, lg: 5 } }}>
-                <Divider sx={{ flexGrow: 1, height: 1.1, backgroundColor: { xs: '#FFFFFF', sm: 'black' }, marginRight: { xs: 3, sm: 5 } }} />
-                <Typography sx={{ fontSize: { xs: '1.3rem', sm: '2rem', lg: '3rem' }, color: { xs: '#FFFFFF', sm: '#6534AC' }, fontWeight: { xs: 550, sm: 600, lg: '700' }, fontFamily: 'Fredoka One', letterSpacing: '2px' }}>CUSTOMISABLE</Typography>
-                <Divider sx={{ flexGrow: 1, height: 1.1, backgroundColor: { xs: '#FFFFFF', sm: 'black' }, marginLeft: { xs: 3, sm: 5 } }} />
-            </Grid>
-            <Grid container sx={{ justifyContent: 'center', display: { xs: 'flex', sm: 'none' } }}>
-                <Grid container item sx={{ width: '90%' }} spacing={2}>
+        <controls.Grid container sx={{ backgroundColor: '#FFFFFF' }}>
+            <controls.Grid container sx={{ display: 'flex', alignItems: 'center', backgroundColor: { xs: '#6534AC', sm: '#FFFFFF' }, height: { xs: '50px' }, marginTop: { xs: 3, sm: 4, lg: 5 }, marginBottom: { xs: 3, sm: 4, lg: 5 } }}>
+                <controls.Divider sx={{ flexGrow: 1, height: 1.1, backgroundColor: { xs: '#FFFFFF', sm: 'black' }, marginRight: { xs: 3, sm: 5 } }} />
+                <controls.Typography sx={{ fontSize: { xs: '1.3rem', sm: '2rem', lg: '3rem' }, color: { xs: '#FFFFFF', sm: '#6534AC' }, fontWeight: { xs: 550, sm: 600, lg: '700' }, fontFamily: 'Fredoka One', letterSpacing: '2px' }}>CUSTOMISABLE</controls.Typography>
+                <controls.Divider sx={{ flexGrow: 1, height: 1.1, backgroundColor: { xs: '#FFFFFF', sm: 'black' }, marginLeft: { xs: 3, sm: 5 } }} />
+            </controls.Grid>
+            <controls.Grid container sx={{ justifyContent: 'center', display: { xs: 'flex', sm: 'none' } }}>
+                <controls.Grid container item sx={{ width: '90%' }} spacing={2}>
                     {images.map((item, index) => (
-                        <Grid item key={index} xs={index === 2 ? 12 : 6} >
-                            <Typography sx={{ display: { xs: 'block', sm: 'none' }, textAlign: 'center', backgroundColor: "#6534AC" }} >{item.name}</Typography>
+                        <controls.Grid item key={index} xs={index === 2 ? 12 : 6} >
+                            <controls.Typography sx={{ display: { xs: 'block', sm: 'none' }, textAlign: 'center', backgroundColor: "#6534AC" }} >{item.name}</controls.Typography>
                             <Imagewithzoom src={item.imageurl} alt={'not found'} />
-                        </Grid>
+                        </controls.Grid>
                     ))}
-                </Grid>
-            </Grid>
+                </controls.Grid>
+            </controls.Grid>
 
-            <Grid container sx={{ justifyContent: 'center', display: { xs: 'none', sm: 'flex' }, }}>
-                <Grid item sx={{ width: '100%', height: { sm: '180px', md: '250px', lg: '300px' }, backgroundColor: '#6534AC', position: 'absolute' }}>
+            <controls.Grid container sx={{ justifyContent: 'center', display: { xs: 'none', sm: 'flex' }, }}>
+                <controls.Grid item sx={{ width: '100%', height: { sm: '180px', md: '250px', lg: '300px' }, backgroundColor: '#6534AC', position: 'absolute' }}>
 
-                </Grid>
-                <Grid container item sx={{ position: 'relative', width: '90%', marginTop: { sm: '5px' } }} spacing={7}>
+                </controls.Grid>
+                <controls.Grid container item sx={{ position: 'relative', width: '90%', marginTop: { sm: '5px' } }} spacing={7}>
                     {images.map((item, index) => (
-                        <Grid item sm={4} key={index}>
-                            <Typography sx={{ textAlign: 'center', color: "#FFFFFF", mb: 0.5, fontSize: { sm: '15px', md: '20px', lg: '20px' } }} >{item.name}</Typography>
-                            <Grid sx={{ border: '5px solid White' }}>
+                        <controls.Grid item sm={4} key={index}>
+                            <controls.Typography sx={{ textAlign: 'center', color: "#FFFFFF", mb: 0.5, fontSize: { sm: '15px', md: '20px', lg: '20px' } }} >{item.name}</controls.Typography>
+                            <controls.Grid sx={{ border: '5px solid White' }}>
                                 <Imagewithzoom src={item.imageurl} alt={'not found'} />
-                            </Grid>
-                        </Grid>
+                            </controls.Grid>
+                        </controls.Grid>
                     ))}
-                </Grid>
+                </controls.Grid>
 
-            </Grid>
+            </controls.Grid>
 
 
-        </Grid>
+        </controls.Grid>
     )
 }
 

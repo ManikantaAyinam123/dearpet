@@ -1,17 +1,16 @@
 import React from 'react'
 import SignInMobile from '../Components/SignInMobile'
-import Appbar1 from '../Components/Appbar1'
-import Appbar2 from '../Components/Appbar2'
-import Footer from '../Components/Footer'
+import Layout from '../Components/Layout'
 
 const SignInMobilePage = () => {
   return (
-   <>
-   <Appbar1/>
-   <Appbar2/>
-   <SignInMobile/>
-   <Footer/>
-   </>
+    <Layout>
+      <div>
+        <SignInMobile />
+      </div>
+    </Layout>
+
+
   )
 }
 

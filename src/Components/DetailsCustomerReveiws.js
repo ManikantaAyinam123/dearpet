@@ -1,60 +1,69 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme({
-  components: {
-    MuiTabs: {
-      styleOverrides: {
-        indicator: {
-          top: 0,
-          bottom: 'unset'
-        }
-      }
-    }
-  }
-});
+import controls from './Import'
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './Theme';
 
 const DetailsCustomerReviews = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = controls.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ width: '100%' }}>
-        <Tabs
-          onChange={handleChange}
-          value={value}
-          aria-label="Tabs where selection follows focus"
-          selectionFollowsFocus
-          centered
-        >
-          <Tab sx={{border:'1px solid black'}} label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
-        </Tabs>
-        {/* Content for each tab */}
+      <controls.Grid container sx={{mt:'50px',justifyContent:'center',display:{xs:'none',sm:'flex'} }}>
+        <controls.Grid  item sx={{width:'85%',}}>
+       
+        <controls.Tabs value={value} onChange={handleChange} aria-label="Tabs">
+        <controls.Tab sx={{ border: '1px solid #EEEEEE', backgroundColor: value === 0 ? 'transparent' : '#FAFAFA', borderBottom: value === 0 ? 'none' : undefined }} label="Description" />
+        <controls.Tab sx={{ border: '1px solid #EEEEEE', backgroundColor: value === 1 ? 'transparent' : '#FAFAFA',borderBottom: value === 1 ? 'none' : undefined }} label="Features" />
+        <controls.Tab sx={{ border: '1px solid #EEEEEE', backgroundColor: value === 2 ? 'transparent' : '#FAFAFA', borderBottom: value === 2 ? 'none' : undefined }} label="Customer Reviews" />
+        <controls.Tab sx={{ border: '1px solid #EEEEEE', backgroundColor: value === 3 ? 'transparent' : '#FAFAFA', borderBottom: value === 3 ? 'none' : undefined }} label="FAQs" />
+        </controls.Tabs>
+      
+     
         {value === 0 && (
-          <Typography component="div" sx={{ p: 3 }}>
-            Content for Item One
-          </Typography>
+          <controls.Box sx={{mt:'20px'}}>
+            <controls.Typography sx={{fontSize:'15px',lineHeight:'1.6'}} >
+      DearPet Ear Muffs – Your Pet's Anxiety-Proof Shield!
+      <br />
+      Is your dog scared of loud noises?
+      Fireworks, thunderstorms, noisy neighbours?
+      Say goodbye to your furry friend's anxiety and hello to calm and comfort with our revolutionary PupComfy Ear Muffs!
+      <br /><br />
+      Noise Reduction:Enjoy peace and quiet while your dog stays calm.<br />
+      Weatherproof:Shield your pup from the stress of storms and sudden downpours.<br />
+      Happy Neighbors: No more barking and howling—keep the neighbourhood peace.<br />
+      Stress-Free Walks: Ensure a comfortable experience for your pup on bustling city streets.<br />
+      Better Sleep: Help your dog get a good night's rest without disruptions.<br /><br />
+      Your dog deserves a life free from fear and stress. Give them the gift of PupComfy Ear Muffs, and enjoy the harmony it brings to your home.
+    </controls.Typography>
+          </controls.Box>
         )}
         {value === 1 && (
-          <Typography component="div" sx={{ p: 3 }}>
-            Content for Item Two
-          </Typography>
+         <></>
         )}
         {value === 2 && (
-          <Typography component="div" sx={{ p: 3 }}>
-            Content for Item Three
-          </Typography>
+         <controls.Grid sx={{border:'1px solid #EEEEEE',mt:'20px'}}>
+          <controls.Box sx={{padding:'40px',}}>
+          <controls.Typography sx={{color:'#4C4C4C',fontSize:'20px'}}>Customer Reviews</controls.Typography>
+          <controls.TextField sx={{borderRadius:'none',color:'A9A8A8',width:'370px'}} size="small" id="outlined-basic" label="Write a review" variant="outlined" />
+          <controls.Box sx={{display:'flex'}}>
+          <controls.Icon icon="bitcoin-icons:star-outline" width="22" height="22"  style={{color:'#ffcc2d' }} />
+          <controls.Icon icon="bitcoin-icons:star-outline" width="22" height="22"  style={{color:'#ffcc2d' }} />
+          <controls.Icon icon="bitcoin-icons:star-outline" width="22" height="22"  style={{color:'#ffcc2d' }} />
+          <controls.Icon icon="bitcoin-icons:star-outline" width="22" height="22"  style={{color:'#ffcc2d' }} />
+          <controls.Icon icon="bitcoin-icons:star-outline" width="22" height="22"  style={{color:'#ffcc2d' }} />
+           <controls.Typography sx={{color:'#000000',fontSize:'14px',m:'1px 5px'}}>Be the first to write a reveiw</controls.Typography>
+
+          </controls.Box>
+          </controls.Box>
+          
+          </controls.Grid>
         )}
-      </Box>
+         <controls.Divider sx={{marginTop:'50px'}}></controls.Divider>
+        </controls.Grid>
+       
+      </controls.Grid>
     </ThemeProvider>
   );
 }

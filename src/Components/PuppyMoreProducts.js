@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import controls from './Import'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import { Navigation } from 'swiper/modules';
-import {Icon} from "@iconify/react";
 import '../App.css';
 
 const PuppyMoreProducts = () => {
-    const[hoveredImage,setHoveredImage]=useState(null);
+    const[hoveredImage,setHoveredImage]=controls.useState(null);
     const images = [
         {
             imgurl: 'https://dearpet.in/cdn/shop/products/chickn-bikis-1.jpg?v=1614769019',
@@ -106,11 +104,11 @@ const PuppyMoreProducts = () => {
 
     return (
        <>
-            <Grid container justifyContent={'center'} >
-                <Typography sx={{ fontSize: { xs: '18px', sm: '25px', md: '28px', lg: '30px' }, fontWeight: { xs: 700 }, marginTop: { xs: '20px', },marginBottom:{xs:'20px'} }}>More products to choose from</Typography>
-            </Grid>
-            <Grid container justifyContent="center">
-                <Grid item width="85%">
+            <controls.Grid container justifyContent={'center'} >
+                <controls.Typography sx={{ fontSize: { xs: '18px', sm: '25px', md: '28px', lg: '30px' }, fontWeight: { xs: 700 }, marginTop: { xs: '20px', },marginBottom:{xs:'20px'} }}>More products to choose from</controls.Typography>
+            </controls.Grid>
+            <controls.Grid container justifyContent="center">
+                <controls.Grid item width="85%">
                     <Swiper
                         className="custom-swiper"
                         breakpoints={{
@@ -132,36 +130,36 @@ const PuppyMoreProducts = () => {
                         <div className="swiper-button-next"></div>    
                         {images.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <Grid container sx={{}}>
-                                    <Grid item xs={12} sx={{ padding: { xs: '10px', sm: '28px' } }}>
+                                <controls.Grid container sx={{}}>
+                                    <controls.Grid item xs={12} sx={{ padding: { xs: '10px', sm: '28px' } }}>
                                         <img height="auto" width="100%"
                                         onMouseEnter={()=> setHoveredImage(index)}
                                         onMouseLeave={()=> setHoveredImage(null) }
                                         src={hoveredImage===index ? item.hoverImageUrl: item.imgurl}
                                         alt="Slide" />
-                                        <Typography sx={{ fontSize: '13px', position: 'absolute', color: '#FFFFFF', top: 0, right: 0, padding: '1px 2px', backgroundColor: '#6A48A8' }}>{item.offer}</Typography>
-                                        <Typography sx={{ fontSize: '13px' }}>{item.productName}</Typography>
-                                        <Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
-                                        <Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
-                                        <Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
-                                        <Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
-                                        <Icon icon="clarity:half-star-solid" width="18" height="18"  style={{color: '#FFD554'}} />
-                                        <Box sx={{display:'flex',marginTop:'3px'}}>
-                                        <Typography sx={{fontSize:'13px',fontWeight:'700'}}>Rs {item.price}.00</Typography>
-                                        <Typography sx={{fontSize:'13px',marginLeft:'5px',fontWeight:'700',color:'#969696'}}>Rs <strike> {item.offerPrice}</strike></Typography>
-                                        </Box>
-                                        <Typography sx={{fontSize:'13px',color:'#333333',marginTop:'3px'}}>Size:{item.size}</Typography>
-                                        <Button sx={{border:'1px solid black',width:'100%',padding:'3px',color:'#FFFFFF',backgroundColor:'#676172',marginTop:'5px','&:hover':{color:'black'},textTransform:'none'}}>Add To Bag</Button>
-                                    </Grid>
+                                        <controls.Typography sx={{ fontSize: '13px', position: 'absolute', color: '#FFFFFF', top: 0, right: 0, padding: '1px 2px', backgroundColor: '#6A48A8' }}>{item.offer}</controls.Typography>
+                                        <controls.Typography sx={{ fontSize: '13px' }}>{item.productName}</controls.Typography>
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18"  style={{color:'#FFD554' }} />
+                                        <controls.Icon icon="clarity:half-star-solid" width="18" height="18"  style={{color: '#FFD554'}} />
+                                        <controls.Box sx={{display:'flex',marginTop:'3px'}}>
+                                        <controls.Typography sx={{fontSize:'13px',fontWeight:'700'}}>Rs {item.price}.00</controls.Typography>
+                                        <controls.Typography sx={{fontSize:'13px',marginLeft:'5px',fontWeight:'700',color:'#969696'}}>Rs <strike> {item.offerPrice}</strike></controls.Typography>
+                                        </controls.Box>
+                                        <controls.Typography sx={{fontSize:'13px',color:'#333333',marginTop:'3px'}}>Size:{item.size}</controls.Typography>
+                                        <controls.Button sx={{border:'1px solid black',width:'100%',padding:'3px',color:'#FFFFFF',backgroundColor:'#676172',marginTop:'5px','&:hover':{color:'black'},textTransform:'none'}}>Add To Bag</controls.Button>
+                                    </controls.Grid>
                                     
-                                </Grid>
+                                </controls.Grid>
                             </SwiperSlide>
                             
                         ))}
                        
                     </Swiper>
-                </Grid>
-            </Grid>
+                </controls.Grid>
+            </controls.Grid>
 
             </>
     )

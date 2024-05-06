@@ -1,15 +1,16 @@
 import React from 'react'
-import Appbar1 from '../Components/Appbar1'
 import DogTabsComponent from '../Components/DogTabsComponent'
-import Appbar2 from '../Components/Appbar2'
+import Layout from '../Components/Layout'
 
 const DogTabsPage = () => {
   return (
-    <>
-    <Appbar1/>
-    <Appbar2/>
-    <DogTabsComponent/>
-    </>
+    <Layout>
+      <div>
+        <DogTabsComponent />
+      </div>
+    </Layout>
+
+
   )
 }
 

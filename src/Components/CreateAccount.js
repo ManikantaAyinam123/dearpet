@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, Typography, Divider, TextField, Button, Box } from '@mui/material';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import controls from './Import'
 
 const CreateAccount = () => {
-  const [formdata, setFormdata] = useState({ name: '', lastname: '', email: '', password: '' });
-  const [errors, setErrors] = useState({ name: '', lastname: '', email: '', password: '', dataExist: '' });
-  const [username,setUserName] =useState('');
-  const navigate = useNavigate();
+  const [formdata, setFormdata] = controls.useState({ name: '', lastname: '', email: '', password: '' });
+  const [errors, setErrors] = controls.useState({ name: '', lastname: '', email: '', password: '', dataExist: '' });
+  const [username,setUserName] =controls.useState('');
+  const navigate = controls.useNavigate();
   const token=localStorage.getItem('accessToken');
   console.log("create account",token);
 
@@ -104,7 +102,7 @@ const CreateAccount = () => {
     }
   };
 
-  useEffect(() =>{
+  controls.useEffect(() =>{
     auth.onAuthStateChanged((user)=>{
       if(user)
       {
@@ -124,44 +122,44 @@ const CreateAccount = () => {
   return (
     <>
     {!token ?(
-      <Grid container sx={{ justifyContent: 'center' }}>
+      <controls.Grid container sx={{ justifyContent: 'center' }}>
 
-      <Grid item sx={{ width: '85%', justifyContent: 'center', marginTop: { xs: '20px', md: '20px' }, marginBottom: { xs: '10px' } }}>
-        <Typography sx={{ marginBottom: { xs: '10px' }, fontSize: { xs: '10px', sm: '12px' }, fontWeight: '200' }}>
-          <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>Home</Link> {'>'} CreateAccount
-        </Typography>
-        <Typography sx={{ fontSize: { xs: '15px', md: '23px' }, fontWeight: { xs: '700', md: '700' } }}>CREATE AN ACCOUNT</Typography>
-        <Divider sx={{ marginTop: { xs: '20px', md: '20px' } }} />
-        <Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { xs: '15px' } }}>Sign up for a free account at Dearpet.</Typography>
-        <Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>First Name</Typography>
-        <TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="name" type="text" value={formdata.name} onChange={handleInputChange} />
-        {errors.name && <Typography color="error">{errors.name}</Typography>}
-        <Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Last Name</Typography>
-        <TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="lastname" type="text" value={formdata.lastname} onChange={handleInputChange} />
-        {errors.lastname && <Typography color="error">{errors.lastname}</Typography>}
-        <Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Your Email Address</Typography>
-        <TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="email" type="email" value={formdata.email} onChange={handleInputChange} />
-        {errors.email && <Typography color="error">{errors.email}</Typography>}
-        <Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Password</Typography>
-        <TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="password" type="password" value={formdata.password} onChange={handleInputChange} />
-        {errors.password && <Typography color="error">{errors.password}</Typography>}
-        <Box sx={{ marginTop: { xs: '20px', md: '20px' }, color: 'black' }}>{errors.dataExist && <Typography color="error">{errors.dataExist}</Typography>} <Button onClick={handleSubmission} sx={{ color: 'black', fontWeight: 700, borderColor: 'black' }} variant='outlined'> CREATE AN ACCOUNT</Button></Box>
-      </Grid>
-    </Grid>
-    ):(<Grid container sx={{justifyContent:'center',marginTop:'15px'}}>
-       <Grid item width={'90%'} >
-        <Typography sx={{fontSize:'18px',fontWeight:'700',color:'#070112',letterSpacing:'0.4px',marginTop:'15px'}}>MY ACCOUNT</Typography>
-        <Typography sx={{fontSize:'15px',fontWeight:'700',color:'#070112',letterSpacing:'0.6px',marginTop:'50px'}}>ORDER HISTORY</Typography>
-        <Divider sx={{marginTop:'8px'}}></Divider>
-        <Typography sx={{marginTop:'20px'}}>You haven't placed any orders yet.</Typography>
-        <Typography sx={{fontSize:'15px',fontWeight:'700',color:'#070112',letterSpacing:'0.4px',marginTop:'50px'}}>ACCOUNT DETAILS</Typography>
-        <Divider sx={{marginTop:'8px'}}></Divider>
-         <Typography sx={{fontSize:'13px',letterSpacing:'0.7px',marginTop:'20px'}}>{username}</Typography>
-         <Typography sx={{fontSize:'14px',letterSpacing:'0.7px',marginTop:'20px'}}>India</Typography>
-         <Button sx={{backgroundColor:'#070112',fontWeight:'bold',letterSpacing:'0.7px',color:'#FFFFFF',borderRadius:'0px',marginTop:'50px',marginBottom:'50px'}}>VIEW ADDRESS{' (1)'}</Button>
+      <controls.Grid item sx={{ width: '85%', justifyContent: 'center', marginTop: { xs: '20px', md: '20px' }, marginBottom: { xs: '10px' } }}>
+        <controls.Typography sx={{ marginBottom: { xs: '10px' }, fontSize: { xs: '10px', sm: '12px' }, fontWeight: '200' }}>
+          <controls.Link to="/" style={{ textDecoration: 'none', color: 'black' }}>Home</controls.Link> {'>'} CreateAccount
+        </controls.Typography>
+        <controls.Typography sx={{ fontSize: { xs: '15px', md: '23px' }, fontWeight: { xs: '700', md: '700' } }}>CREATE AN ACCOUNT</controls.Typography>
+        <controls.Divider sx={{ marginTop: { xs: '20px', md: '20px' } }} />
+        <controls.Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { xs: '15px' } }}>Sign up for a free account at Dearpet.</controls.Typography>
+        <controls.Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>First Name</controls.Typography>
+        <controls.TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="name" type="text" value={formdata.name} onChange={handleInputChange} />
+        {errors.name && <controls.Typography color="error">{errors.name}</controls.Typography>}
+        <controls.Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Last Name</controls.Typography>
+        <controls.TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="lastname" type="text" value={formdata.lastname} onChange={handleInputChange} />
+        {errors.lastname && <controls.Typography color="error">{errors.lastname}</controls.Typography>}
+        <controls.Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Your Email Address</controls.Typography>
+        <controls.TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="email" type="email" value={formdata.email} onChange={handleInputChange} />
+        {errors.email && <controls.Typography color="error">{errors.email}</controls.Typography>}
+        <controls.Typography sx={{ marginTop: { xs: '20px', md: '20px' }, fontSize: { md: '13px' }, marginBottom: { md: '10px' } }}>Password</controls.Typography>
+        <controls.TextField InputProps={{ sx: { width: { xs: '30ch', md: '40ch' }, height: '38px', borderRadius: 0 } }} name="password" type="password" value={formdata.password} onChange={handleInputChange} />
+        {errors.password && <controls.Typography color="error">{errors.password}</controls.Typography>}
+        <controls.Box sx={{ marginTop: { xs: '20px', md: '20px' }, color: 'black' }}>{errors.dataExist && <controls.Typography color="error">{errors.dataExist}</controls.Typography>} <controls.Button onClick={handleSubmission} sx={{ color: 'black', fontWeight: 700, borderColor: 'black' }} variant='outlined'> CREATE AN ACCOUNT</controls.Button></controls.Box>
+      </controls.Grid>
+    </controls.Grid>
+    ):(<controls.Grid container sx={{justifyContent:'center',marginTop:'15px'}}>
+       <controls.Grid item width={'90%'} >
+        <controls.Typography sx={{fontSize:'18px',fontWeight:'700',color:'#070112',letterSpacing:'0.4px',marginTop:'15px'}}>MY ACCOUNT</controls.Typography>
+        <controls.Typography sx={{fontSize:'15px',fontWeight:'700',color:'#070112',letterSpacing:'0.6px',marginTop:'50px'}}>ORDER HISTORY</controls.Typography>
+        <controls.Divider sx={{marginTop:'8px'}}></controls.Divider>
+        <controls.Typography sx={{marginTop:'20px'}}>You haven't placed any orders yet.</controls.Typography>
+        <controls.Typography sx={{fontSize:'15px',fontWeight:'700',color:'#070112',letterSpacing:'0.4px',marginTop:'50px'}}>ACCOUNT DETAILS</controls.Typography>
+        <controls.Divider sx={{marginTop:'8px'}}></controls.Divider>
+         <controls.Typography sx={{fontSize:'13px',letterSpacing:'0.7px',marginTop:'20px'}}>{username}</controls.Typography>
+         <controls.Typography sx={{fontSize:'14px',letterSpacing:'0.7px',marginTop:'20px'}}>India</controls.Typography>
+         <controls.Button sx={{backgroundColor:'#070112',fontWeight:'bold',letterSpacing:'0.7px',color:'#FFFFFF',borderRadius:'0px',marginTop:'50px',marginBottom:'50px'}}>VIEW ADDRESS{' (1)'}</controls.Button>
 
-       </Grid>
-    </Grid>)}
+       </controls.Grid>
+    </controls.Grid>)}
     
      <ToastContainer />
      </>

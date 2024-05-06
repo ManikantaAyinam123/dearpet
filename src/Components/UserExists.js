@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Grid, Typography, Button, Box, IconButton, Divider } from '@mui/material';
+import controls from './Import'
 import { auth } from '../firebase';
-import { Icon } from "@iconify/react";
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UserExists = () => {
-  const [formClose, setFormClose] = useState(false);
-  const [username,setUserName] =useState('');
+  const [formClose, setFormClose] = controls.useState(false);
+  const [username,setUserName] =controls.useState('');
 
   const handleSignOut = () => {
     auth.signOut()
@@ -33,7 +31,7 @@ const UserExists = () => {
   };
 
 
-  useEffect(() =>{
+  controls.useEffect(() =>{
     auth.onAuthStateChanged((user)=>{
       if(user)
       {
@@ -57,18 +55,18 @@ const UserExists = () => {
 
   <>
     {!formClose && (
-      <Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px', position: 'relative', marginTop: {} }}>
-        <Box sx={{ display: 'flex', position: 'absolute', top: '20px', right: '30px', marginBottom: '50px', fontWeight: 700 }}> <IconButton onClick={() => setFormClose(true)}> <Icon icon="iconoir:cancel" width="18" height="18" /><Typography sx={{ fontSize: '12px', fontWeight: 500, ml: '2px' }}>
-          CLOSE</Typography></IconButton></Box>
-        <Box sx={{ mt: '50px' }}> <Typography sx={{ fontSize: '13px', fontWeight: 700,textTransform:'uppercase',letterSpacing:'0.5px' }}>{username}</Typography></Box>
-        <Divider sx={{ mt: 2 }} />
-        <Typography sx={{ textAlign: 'center',marginTop:'20px' }}>My Account </Typography>
+      <controls.Grid sx={{ minWidth: 400, padding: '15px 30px 100px 30px', position: 'relative', marginTop: {} }}>
+        <controls.Box sx={{ display: 'flex', position: 'absolute', top: '20px', right: '30px', marginBottom: '50px', fontWeight: 700 }}> <controls.IconButton onClick={() => setFormClose(true)}> <controls.Icon icon="iconoir:cancel" width="18" height="18" /><controls.Typography sx={{ fontSize: '12px', fontWeight: 500, ml: '2px' }}>
+          CLOSE</controls.Typography></controls.IconButton></controls.Box>
+        <controls.Box sx={{ mt: '50px' }}> <controls.Typography sx={{ fontSize: '13px', fontWeight: 700,textTransform:'uppercase',letterSpacing:'0.5px' }}>{username}</controls.Typography></controls.Box>
+        <controls.Divider sx={{ mt: 2 }} />
+        <controls.Typography sx={{ textAlign: 'center',marginTop:'20px' }}>My Account </controls.Typography>
 
-        <Button onClick={handleSignOut}variant="outlined"sx={{marginTop:'15px',display: 'flex',alignItems: 'center',justifyContent: 'center',width: '353px',height: '34px',backgroundColor: '#232323',color: '#FFFFFF',border: '1px solid #000000',fontWeight:'700'}}>
+        <controls.Button onClick={handleSignOut}variant="outlined"sx={{marginTop:'15px',display: 'flex',alignItems: 'center',justifyContent: 'center',width: '353px',height: '34px',backgroundColor: '#232323',color: '#FFFFFF',border: '1px solid #000000',fontWeight:'700'}}>
           LOG OUT
-        </Button>
+        </controls.Button>
         
-     </Grid>
+     </controls.Grid>
    )}
     <ToastContainer />
     </>

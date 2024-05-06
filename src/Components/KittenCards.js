@@ -1,15 +1,12 @@
-import { Box, Button, Card, CardContent, Checkbox, Divider, Drawer, Grid, Typography, styled } from '@mui/material'
-import IconButton from '@mui/material/IconButton';
-import React, { useState } from 'react'
-import { Icon } from "@iconify/react";
+import React from 'react'
+import controls from './Import'
 import LinearProgress from '@mui/material/LinearProgress';
-import { Check } from '@mui/icons-material';
 import '../App.css';
 
 const KittenCards = () => {
-    const [hoveredImage, setHoveredImage] = useState(null);
-    const [drawerOpen, setDrawerOpen] = useState();
-    const [selectImage, setSelectImage] = useState();
+    const [hoveredImage, setHoveredImage] = controls.useState(null);
+    const [drawerOpen, setDrawerOpen] = controls.useState();
+    const [selectImage, setSelectImage] = controls.useState();
     const handleAddImage = (index) => {
         setSelectImage(images[index]);
 
@@ -17,13 +14,10 @@ const KittenCards = () => {
 
         localStorage.setItem('imgDisplay', displayImg);
         console.log("localstorage img", localStorage.getItem('imgDisplay'))
-        localStorage.setItem('name',images[index].productName);
-        localStorage.setItem('price',images[index].price);
-        console.log('name',localStorage.getItem('name'));
-       
-
-
-        setDrawerOpen(true);
+        localStorage.setItem('name', images[index].productName);
+        localStorage.setItem('price', images[index].price);
+        console.log('name', localStorage.getItem('name'));
+         setDrawerOpen(true);
 
     }
 
@@ -112,42 +106,37 @@ const KittenCards = () => {
     ];
 
     return (
-        <Grid container justifyContent="center" marginTop={4}>
-            <Grid container item width="90%">
-                <Grid item md={2} sx={{ height: '300px', display: { xs: 'none', lg: 'block' } }}>
-                    <Typography sx={{ fontSize: '20px', backgroundColor: '#EEEEEE', width: '100%', height: '30px', color: '#333333', padding: '3px 3px' }}>Filter by:</Typography>
+        <controls.Grid container justifyContent="center" marginTop={4}>
+            <controls.Grid container item width="90%">
+                <controls.Grid item md={2} sx={{ height: '300px', display: { xs: 'none', lg: 'block' } }}>
+                    <controls.Typography sx={{ fontSize: '20px', backgroundColor: '#EEEEEE', width: '100%', height: '30px', color: '#333333', padding: '3px 3px' }}>Filter by:</controls.Typography>
                     {sidebarContent.map((item, index) => (
-                        <Grid key={index}>
-                            <Box sx={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Typography sx={{ fontSize: '13px', color: '#333333', fontWeight: 'bold', letterSpacing: '0.1em' }}>{item.name}</Typography>
-                                <Icon icon="codicon:dash" width="24" height="24" style={{ color: 'black' }} />
-                            </Box>
+                        <controls.Grid key={index}>
+                            <controls.Box sx={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <controls.Typography sx={{ fontSize: '13px', color: '#333333', fontWeight: 'bold', letterSpacing: '0.1em' }}>{item.name}</controls.Typography>
+                                <controls.Icon icon="codicon:dash" width="24" height="24" style={{ color: 'black' }} />
+                            </controls.Box>
                             {Object.keys(item).map((key, i) => {
                                 if (key.startsWith('content')) {
                                     return (
-                                        <Box key={key} sx={{ display: 'flex', marginLeft: '0px', marginTop: i === 0 ? '8px' : '5px' }}>
-                                            <Icon icon="ri:checkbox-blank-line" width="20" height="20" style={{ color: 'grey' }} />
-                                            <Typography sx={{ fontSize: '14px', color: '#333333', marginLeft: '10px' }}>{item[key]}</Typography>
-                                        </Box>
+                                        <controls.Box key={key} sx={{ display: 'flex', marginLeft: '0px', marginTop: i === 0 ? '8px' : '5px' }}>
+                                            <controls.Icon icon="ri:checkbox-blank-line" width="20" height="20" style={{ color: 'grey' }} />
+                                            <controls.Typography sx={{ fontSize: '14px', color: '#333333', marginLeft: '10px' }}>{item[key]}</controls.Typography>
+                                        </controls.Box>
                                     );
                                 }
                                 return null;
                             })}
-                            <Divider sx={{ width: '100%', marginTop: '10px', backgroundColor: '#333333' }} />
-                        </Grid>
+                            <controls.Divider sx={{ width: '100%', marginTop: '10px', backgroundColor: '#333333' }} />
+                        </controls.Grid>
                     ))}
-
-
-
-
-
-                </Grid>
-                <Grid container item lg={10} style={{ display: 'flex' }}>
+               </controls.Grid>
+                <controls.Grid container item lg={10} style={{ display: 'flex' }}>
                     {images.map((item, index) => (
                         <React.Fragment key={index}>
-                            <Grid item xs={12} sm={6} md={4} lg={4} sx={{ display: { xs: 'flex', sm: 'block' } }}>
+                            <controls.Grid item xs={12} sm={6} md={4} lg={4} sx={{ display: { xs: 'flex', sm: 'block' } }}>
 
-                                <Grid xs={5} sm={12} sx={{ padding: { xs: '10px', sm: '5px' }, position: 'relative' }}>
+                                <controls.Grid xs={5} sm={12} sx={{ padding: { xs: '10px', sm: '5px' }, position: 'relative' }}>
                                     <img
                                         height="auto"
                                         width="100%"
@@ -156,84 +145,84 @@ const KittenCards = () => {
                                         src={hoveredImage === index ? item.hoverImageUrl : item.imgurl}
                                         alt="Slide"
                                     />
-                                    <Typography sx={{ fontSize: '13px', position: 'absolute', color: '#FFFFFF', top: { xs: '0', sm: '0' }, left: { xs: '0', sm: 'auto' }, right: { xs: 'auto', sm: 0 }, padding: '1px 2px', backgroundColor: '#6A48A8' }}>{item.offer}</Typography>
-                                </Grid>
-                                <Grid xs={7} sm={12} sx={{ padding: { xs: '10px', sm: '28px' } }}>
-                                    <Divider sx={{ display: { xs: 'none', sm: 'block' }, width: '100%', height: '3px', backgroundColor: '#eaeaea' }} />
-                                    <Typography sx={{ fontSize: '14px', color: '#333333', fontFamily: 'Source Sans Pro', marginTop: '10px' }}>{item.productName}</Typography>
-                                    <Box sx={{ display: { sm: 'flex' }, marginTop: '3px' }}>
-                                        <Typography sx={{ fontSize: { xs: '13px', sm: '13px' }, fontWeight: '700' }}>Rs {item.price}.00</Typography>
-                                        <Typography sx={{ fontSize: { xs: '13px', sm: '13px' }, marginLeft: { xs: '0px', sm: '10px' }, marginRight: { sm: '80px', md: '40px' }, fontWeight: '700', color: '#969696' }}>Rs <strike>{item.offerPrice}</strike></Typography>
-                                        <Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554', marginTop: { xs: '3px', sm: '0px' } }} />
-                                        <Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554' }} />
-                                        <Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554' }} />
-                                        <Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554' }} />
-                                        <Icon icon="clarity:half-star-solid" width="18" height="18" style={{ color: '#FFD554' }} />
-                                    </Box>
-                                    <Typography sx={{ fontSize: '14px', color: '#333333', marginTop: '3px' }}>Size: {item.size}</Typography>
-                                    <Typography sx={{ padding: '2px' }}>
+                                    <controls.Typography sx={{ fontSize: '13px', position: 'absolute', color: '#FFFFFF', top: { xs: '0', sm: '0' }, left: { xs: '0', sm: 'auto' }, right: { xs: 'auto', sm: 0 }, padding: '1px 2px', backgroundColor: '#6A48A8' }}>{item.offer}</controls.Typography>
+                                </controls.Grid>
+                                <controls.Grid xs={7} sm={12} sx={{ padding: { xs: '10px', sm: '28px' } }}>
+                                    <controls.Divider sx={{ display: { xs: 'none', sm: 'block' }, width: '100%', height: '3px', backgroundColor: '#eaeaea' }} />
+                                    <controls.Typography sx={{ fontSize: '14px', color: '#333333', fontFamily: 'Source Sans Pro', marginTop: '10px' }}>{item.productName}</controls.Typography>
+                                    <controls.Box sx={{ display: { sm: 'flex' }, marginTop: '3px' }}>
+                                        <controls.Typography sx={{ fontSize: { xs: '13px', sm: '13px' }, fontWeight: '700' }}>Rs {item.price}.00</controls.Typography>
+                                        <controls.Typography sx={{ fontSize: { xs: '13px', sm: '13px' }, marginLeft: { xs: '0px', sm: '10px' }, marginRight: { sm: '80px', md: '40px' }, fontWeight: '700', color: '#969696' }}>Rs <strike>{item.offerPrice}</strike></controls.Typography>
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554', marginTop: { xs: '3px', sm: '0px' } }} />
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554' }} />
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554' }} />
+                                        <controls.Icon icon="carbon:star-filled" width="18" height="18" style={{ color: '#FFD554' }} />
+                                        <controls.Icon icon="clarity:half-star-solid" width="18" height="18" style={{ color: '#FFD554' }} />
+                                    </controls.Box>
+                                    <controls.Typography sx={{ fontSize: '14px', color: '#333333', marginTop: '3px' }}>Size: {item.size}</controls.Typography>
+                                    <controls.Typography sx={{ padding: '2px' }}>
                                         <span style={{ backgroundColor: '#EFEDED', padding: '8px', borderRadius: '50px', color: '#969696', fontSize: '13px' }}>{item.extraContent}</span>
-                                    </Typography>
-                                    <Grid sx={{ marginTop: '10px', display: 'flex' }}>
-                                        <Button sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, border: '1px solid black', width: '45%', padding: '3px', color: '#333333', '&:hover': { color: 'black' }, textTransform: 'none' }}>Quick View</Button>
-                                        <Button onClick={() => { handleAddImage(index) }} sx={{ border: '1px solid black', width: { xs: '100%', sm: '100%', md: '45%' }, padding: '3px', color: '#FFFFFF', backgroundColor: '#676172', '&:hover': { color: 'black' }, textTransform: 'none', marginLeft: { xs: '0px', sm: '0px', md: '10px' } }}>Add To Bag</Button>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Divider sx={{ marginBottom: '8px', display: { sm: 'none' }, width: '100%', height: '5px', backgroundColor: '#eaeaea' }} />
-                            <Drawer
+                                    </controls.Typography>
+                                    <controls.Grid sx={{ marginTop: '10px', display: 'flex' }}>
+                                        <controls.Button sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, border: '1px solid black', width: '45%', padding: '3px', color: '#333333', '&:hover': { color: 'black' }, textTransform: 'none' }}>Quick View</controls.Button>
+                                        <controls.Button onClick={() => { handleAddImage(index) }} sx={{ border: '1px solid black', width: { xs: '100%', sm: '100%', md: '45%' }, padding: '3px', color: '#FFFFFF', backgroundColor: '#676172', '&:hover': { color: 'black' }, textTransform: 'none', marginLeft: { xs: '0px', sm: '0px', md: '10px' } }}>Add To Bag</controls.Button>
+                                    </controls.Grid>
+                                </controls.Grid>
+                            </controls.Grid>
+                            <controls.Divider sx={{ marginBottom: '8px', display: { sm: 'none' }, width: '100%', height: '5px', backgroundColor: '#eaeaea' }} />
+                            <controls.Drawer
                                 anchor='right'
                                 open={drawerOpen}
                                 onClose={() => { setDrawerOpen(false) }}
                                 ModalProps={{ BackdropProps: { invisible: true, style: { backgroundColor: 'rgba(0, 0, 0, 0.1)' } } }}
                             >
-                                <Grid width="450px" backgroundColor="#EEEEEE">
-                                    <Box sx={{ display: 'flex', backgroundColor: '#6534AC', padding: '5px', textAlign: 'center' }}>
-                                        <IconButton onClick={() => { setDrawerOpen(false) }}><Icon icon="formkit:caretleft" width="20" height="20" style={{ color: '#FFFFFF' }} /></IconButton>
-                                        <Typography sx={{ color: '#FFFFFF', fontSize: '15px', marginLeft: '130px', marginTop: '8px' }}>My shopping bag(1)</Typography>
+                                <controls.Grid width="450px" backgroundColor="#EEEEEE">
+                                    <controls.Box sx={{ display: 'flex', backgroundColor: '#6534AC', padding: '5px', textAlign: 'center' }}>
+                                        <controls.IconButton onClick={() => { setDrawerOpen(false) }}><controls.Icon icon="formkit:caretleft" width="20" height="20" style={{ color: '#FFFFFF' }} /></controls.IconButton>
+                                        <controls.Typography sx={{ color: '#FFFFFF', fontSize: '15px', marginLeft: '130px', marginTop: '8px' }}>My shopping bag(1)</controls.Typography>
 
-                                    </Box>
+                                    </controls.Box>
 
-                                    <LinearProgress sx={{position:'relative', marginTop: '20px', height: '16px', margin: '15px', borderRadius: '5px', backgroundColor: '#6534AC' }} variant="determinate" value={0} />
-                                    <Typography sx={{position:'absolute',top:'56px',left:'200px',color:'#FFFFFF'}}>100%</Typography>
-                                    
-                                    <Grid container sx={{ display: 'flex' ,height:'120px',backgroundColor:'#FFFFFF',padding:'10px',margin:'5px'}} >
-                                        <Grid item xs={4} sx={{padding:'10px' }} >
-                                        <img width='90px' height='90px' src={localStorage.getItem('imgDisplay')}></img>
-                                        </Grid>
-                                        <Grid item xs={8} sx={{ }} >
-                                            <Typography sx={{fontSize:'12px',color:'4C4C4C',letterSpacing:'0.2px',marginTop:'5px'}}>{localStorage.getItem('name')}</Typography>
-                                            <Grid sx={{display:'flex',marginTop:'3px'}} gap={2}>
-                                            <Typography sx={{fontSize:'12px',fontWeight:'bold',letterSpacing:'0.3px'}}>Standard</Typography>
-                                            <Icon icon="fluent:text-bullet-list-square-edit-24-filled" width="20" height="20"  style={{color: '#676172'}} />
-                                            </Grid>
-                                            <Grid sx={{display:'flex',justifyContent:'space-between',marginTop:'3px'}}>
-                                            <Typography sx={{fontSize:'12px',fontWeight:'bold',letterSpacing:'0.3px'}}>Rs {localStorage.getItem('price')}.00</Typography>
-                                            <Icon icon="material-symbols-light:delete-outline" width="20" height="20"  style={{color:'#676172'}} />     
-                                            </Grid>
-                                            <Grid sx={{display:'flex',justifyContent:'space-around',height:'20px',width:'65px',border:'1px solid #6534AC',alignItems:'center',marginTop:'3px'}}>
-                                               <Typography>-</Typography>
-                                               <Typography>1</Typography>
-                                               <Typography>+</Typography>
+                                    <LinearProgress sx={{ position: 'relative', marginTop: '20px', height: '16px', margin: '15px', borderRadius: '5px', backgroundColor: '#6534AC' }} variant="determinate" value={0} />
+                                    <controls.Typography sx={{ position: 'absolute', top: '56px', left: '200px', color: '#FFFFFF' }}>100%</controls.Typography>
 
-                                            </Grid>
-                            
-                                        </Grid>
+                                    <controls.Grid container sx={{ display: 'flex', height: '120px', backgroundColor: '#FFFFFF', padding: '10px', margin: '5px' }} >
+                                        <controls.Grid item xs={4} sx={{ padding: '10px' }} >
+                                            <img width='90px' height='90px' src={localStorage.getItem('imgDisplay')}></img>
+                                        </controls.Grid>
+                                        <controls.Grid item xs={8} sx={{}} >
+                                            <controls.Typography sx={{ fontSize: '12px', color: '4C4C4C', letterSpacing: '0.2px', marginTop: '5px' }}>{localStorage.getItem('name')}</controls.Typography>
+                                            <controls.Grid sx={{ display: 'flex', marginTop: '3px' }} gap={2}>
+                                                <controls.Typography sx={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '0.3px' }}>Standard</controls.Typography>
+                                                <controls.Icon icon="fluent:text-bullet-list-square-edit-24-filled" width="20" height="20" style={{ color: '#676172' }} />
+                                            </controls.Grid>
+                                            <controls.Grid sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '3px' }}>
+                                                <controls.Typography sx={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '0.3px' }}>Rs {localStorage.getItem('price')}.00</controls.Typography>
+                                                <controls.Icon icon="material-symbols-light:delete-outline" width="20" height="20" style={{ color: '#676172' }} />
+                                            </controls.Grid>
+                                            <controls.Grid sx={{ display: 'flex', justifyContent: 'space-around', height: '20px', width: '65px', border: '1px solid #6534AC', alignItems: 'center', marginTop: '3px' }}>
+                                                <controls.Typography>-</controls.Typography>
+                                                <controls.Typography>1</controls.Typography>
+                                                <controls.Typography>+</controls.Typography>
 
-                                    </Grid>
-                                    <Grid sx={{marginTop:'460px'}} >
-                                      <Button href="/CheckoutPage" sx={{backgroundColor:'#6534AC',color:'#FFFFFF',justifyContent:'center',width:'100%',letterSpacing:'0.3',borderRadius:'0px','&:hover':{backgroundColor:'#6534AC',color:'#FFFFFF',}}}>Proceed to checkout</Button>
-                                    </Grid>
-                             
-                                </Grid>
-                            </Drawer>
+                                            </controls.Grid>
+
+                                        </controls.Grid>
+
+                                    </controls.Grid>
+                                    <controls.Grid sx={{ marginTop: '400px' }} >
+                                        <controls.Button href="/CheckoutPage" sx={{ backgroundColor: '#6534AC', color: '#FFFFFF', justifyContent: 'center', width: '100%', letterSpacing: '0.3', borderRadius: '0px', '&:hover': { backgroundColor: '#6534AC', color: '#FFFFFF', } }}>Proceed to checkout</controls.Button>
+                                    </controls.Grid>
+
+                                </controls.Grid>
+                            </controls.Drawer>
 
 
                         </React.Fragment>
                     ))}
-                </Grid>
-            </Grid>
-        </Grid>
+                </controls.Grid>
+            </controls.Grid>
+        </controls.Grid>
 
 
     )
