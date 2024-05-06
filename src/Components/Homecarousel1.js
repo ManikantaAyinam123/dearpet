@@ -1,51 +1,41 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {Grid , Box} from '@mui/material';
+import controls from './Import'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
-
-
-
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { ImportContacts } from '@mui/icons-material';
-
 export default function Homecarousel1() {
   return (
-     <Box  sx={{backgroundColor:'#FFFFFF'}}>
+    <controls.Box sx={{ backgroundColor: '#FFFFFF' }}>
       <Swiper
-           
-       
-        autoplay={{
+         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
         }}
-      
+
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-       
-        <SwiperSlide><img height="auto"width="100%"src="https://dearpet.in/cdn/shop/files/Desktop_website_Food_2.png?v=1712405263">
+
+        <SwiperSlide><img height="auto" width="100%" src="https://dearpet.in/cdn/shop/files/Desktop_website_Food_2.png?v=1712405263">
         </img></SwiperSlide>
-        <SwiperSlide><img height="auto"width="100%"src="https://dearpet.in/cdn/shop/files/Desktop_website_banner_7.png?v=1709379440">
+        <SwiperSlide><img height="auto" width="100%" src="https://dearpet.in/cdn/shop/files/Desktop_website_banner_7.png?v=1709379440">
         </img></SwiperSlide>
-        <SwiperSlide><img height="auto"width="100%" src="https://dearpet.in/cdn/shop/files/Desktop_website_banner_END_OF_SALE.png?v=1705562724">
+        <SwiperSlide><img height="auto" width="100%" src="https://dearpet.in/cdn/shop/files/Desktop_website_banner_END_OF_SALE.png?v=1705562724">
         </img></SwiperSlide>
-        <SwiperSlide><img height="auto"width="100%"src="https://dearpet.in/cdn/shop/files/Desktop_Website_Banner_Shampoo.png?v=1698487563">
+        <SwiperSlide><img height="auto" width="100%" src="https://dearpet.in/cdn/shop/files/Desktop_Website_Banner_Shampoo.png?v=1698487563">
         </img></SwiperSlide>
-        <SwiperSlide><img height="auto"width="100%" src="https://dearpet.in/cdn/shop/files/Desktop_website_banner_ear_muffs.png?v=1698489161">
+        <SwiperSlide><img height="auto" width="100%" src="https://dearpet.in/cdn/shop/files/Desktop_website_banner_ear_muffs.png?v=1698489161">
         </img></SwiperSlide>
-        <SwiperSlide><img  height="auto"width="100%"src="https://dearpet.in/cdn/shop/files/Website_Banner_Desktop.png?v=1699439468">
+        <SwiperSlide><img height="auto" width="100%" src="https://dearpet.in/cdn/shop/files/Website_Banner_Desktop.png?v=1699439468">
         </img></SwiperSlide>
-        <SwiperSlide><img height="auto"width="100%" src="https://dearpet.in/cdn/shop/files/4.gif?v=1629206953">
+        <SwiperSlide><img height="auto" width="100%" src="https://dearpet.in/cdn/shop/files/4.gif?v=1629206953">
         </img></SwiperSlide>
-       
-       
-      </Swiper>
-      </Box>
+       </Swiper>
+    </controls.Box>
   );
 }

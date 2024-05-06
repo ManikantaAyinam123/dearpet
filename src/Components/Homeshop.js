@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography } from '@mui/material';
+import controls from './Import'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -25,12 +25,12 @@ const Homeshop = () => {
   ];
 
   return (
-    <Grid container sx={{backgroundColor:'#FFFFFF'}}>
-      <Grid container justifyContent={'center'}>
-        <Typography sx={{ color: '#6A4EA4', fontSize: { xs: '18px', sm: '25px', md: '28px', lg: '30px' }, fontWeight: { xs: 700 }, letterSpacing: '0.1em', marginTop: { xs: '20px', }, }}>SHOP FROM 40+ BRANDS </Typography>
-      </Grid>
-      <Grid container justifyContent="center">
-        <Grid item width="95%">
+    <controls.Grid container sx={{backgroundColor:'#FFFFFF'}}>
+      <controls.Grid container justifyContent={'center'}>
+        <controls.Typography sx={{ color: '#6A4EA4', fontSize: { xs: '18px', sm: '25px', md: '28px', lg: '30px' }, fontWeight: { xs: 700 }, letterSpacing: '0.1em', marginTop: { xs: '20px', }, }}>SHOP FROM 40+ BRANDS </controls.Typography>
+      </controls.Grid>
+      <controls.Grid container justifyContent="center">
+        <controls.Grid item width="95%">
           <Swiper
             className="mySwiper"
             breakpoints={{
@@ -42,26 +42,26 @@ const Homeshop = () => {
           >
             {images.map((item, index) => (
               <SwiperSlide key={index}>
-                <Grid container sx={{ display: { xs: 'block', lg: 'none' } }}>
-                  <Grid item xs={12} sx={{ padding: { xs: '10px', sm: '28px' } }}>
+                <controls.Grid container sx={{ display: { xs: 'block', lg: 'none' } }}>
+                  <controls.Grid item xs={12} sx={{ padding: { xs: '10px', sm: '28px' } }}>
                     <img height="auto" width="100%" src={item.imgurl} alt="Slide" />
-                  </Grid>
-                </Grid>
+                  </controls.Grid>
+                </controls.Grid>
               </SwiperSlide>
             ))}
           </Swiper>
-        </Grid>
-      </Grid>
-      <Grid container justifyContent={'center'} sx={{ display: { xs: 'none', lg: 'block' } }}>
-        <Grid container item width="95%" justifyContent={'center'}>
+        </controls.Grid>
+      </controls.Grid>
+      <controls.Grid container justifyContent={'center'} sx={{ display: { xs: 'none', lg: 'block' } }}>
+        <controls.Grid container item width="95%" justifyContent={'center'}>
           {images.map((item) => (
-            <Grid item lg={2} sx={{ marginLeft: { lg: '0px' }, padding: { lg: '50px' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <controls.Grid item lg={2} sx={{ marginLeft: { lg: '0px' }, padding: { lg: '50px' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <img height="auto" width="100%" src={item.imgurl} alt={item.imgname} />
-            </Grid>
+            </controls.Grid>
           ))}
-        </Grid>
-      </Grid>
-    </Grid>
+        </controls.Grid>
+      </controls.Grid>
+    </controls.Grid>
   )
 }
 

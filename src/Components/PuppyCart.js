@@ -1,4 +1,5 @@
-import { Grid, Typography, useMediaQuery } from '@mui/material'
+import controls from './Import'
+import { useMediaQuery } from '@mui/material'
 import React from 'react'
 
 const PuppyCart = () => {
@@ -31,20 +32,20 @@ const PuppyCart = () => {
     const isXsScreen = useMediaQuery('(max-width:600px)');
     return (
         <>
-            <Grid container justifyContent={'center'}>
-                <Grid item width={'85%'} sx={{ textAlign: 'center' }}>
-                    <Typography sx={{ fontSize: { xs: '20px', sm: '30px', md: '36px' },fontWeight:'bolder', fontWeight: '700', color: '#333333', lineHeight: '100%', marginTop: '20px' }}>Explore the Puppy Cart</Typography>
-                    <Grid container sx={{ display: 'flex', marginTop: '10px' }}>
+            <controls.Grid container justifyContent={'center'}>
+                <controls.Grid item width={'85%'} sx={{ textAlign: 'center' }}>
+                    <controls.Typography sx={{ fontSize: { xs: '20px', sm: '30px', md: '36px' },fontWeight:'bolder', fontWeight: '700', color: '#333333', lineHeight: '100%', marginTop: '20px' }}>Explore the Puppy Cart</controls.Typography>
+                    <controls.Grid container sx={{ display: 'flex', marginTop: '10px' }}>
                         {data.map((item, index) => (
                             <React.Fragment key={index}>
                                 {(isXsScreen || index % 2 === 0) ? (
                                     <>
-                                        <Grid item xs={12} sm={6} md={6}>
+                                        <controls.Grid item xs={12} sm={6} md={6}>
                                             <img style={{ maxWidth: '100%', height: 'auto' }} src={item.imgUrl} alt="Puppy Food" />
-                                        </Grid>
-                                        <Grid item xs={12} sm={6} md={6} sx={{ backgroundColor: '#FFD140', textAlign: 'start', padding: '25px', borderRadius: '20px', margin: { xs: '0', sm: '30px 0px', md: '60px 0px' } }}>
-                                            <Typography sx={{ fontSize: { xs: '14px',sm:'15px', md: '16px' }, fontWeight: '600', lineHeight: '1.4' }}>{item.heading}</Typography>
-                                            <Typography sx={{
+                                        </controls.Grid>
+                                        <controls.Grid item xs={12} sm={6} md={6} sx={{ backgroundColor: '#FFD140', textAlign: 'start', padding: '25px', borderRadius: '20px', margin: { xs: '0', sm: '30px 0px', md: '60px 0px' } }}>
+                                            <controls.Typography sx={{ fontSize: { xs: '14px',sm:'15px', md: '16px' }, fontWeight: '600', lineHeight: '1.4' }}>{item.heading}</controls.Typography>
+                                            <controls.Typography sx={{
                                                 marginTop: '15px',
                                                 fontSize: { xs: '13px', md: '15px' },
                                                 overflow: 'hidden',
@@ -52,31 +53,31 @@ const PuppyCart = () => {
                                                 WebkitLineClamp: '6',
                                                 WebkitBoxOrient: 'vertical',
                                                 textOverflow: 'ellipsis' 
-                                            }}>{item.content}</Typography>
-                                            <Grid sx={{ marginTop: { xs: '30px',sm:'30px',md:'50px',lg:'70px' } }}>
-                                                <Typography sx={{ textAlign: 'right', fontSize: { xs: '20px', md: '20px' }, fontWeight: '700' }}>{item.bottomcontent}</Typography>
-                                            </Grid>
-                                        </Grid>
+                                            }}>{item.content}</controls.Typography>
+                                            <controls.Grid sx={{ marginTop: { xs: '30px',sm:'30px',md:'50px',lg:'70px' } }}>
+                                                <controls.Typography sx={{ textAlign: 'right', fontSize: { xs: '20px', md: '20px' }, fontWeight: '700' }}>{item.bottomcontent}</controls.Typography>
+                                            </controls.Grid>
+                                        </controls.Grid>
                                     </>
                                 ) : (
                                     <>
-                                        <Grid item xs={12} sm={6} md={6} sx={{ backgroundColor: '#FFD140', textAlign: 'start', padding: '25px', borderRadius: '20px', margin: { xs: '0', sm: '30px 0px', md: '60px 0px' } }}>
-                                            <Typography sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: '600', lineHeight: '1.4' }}>{item.heading}</Typography>
-                                            <Typography sx={{ marginTop: '15px', fontSize: { xs: '13px', md: '15px' } }}>{item.content}</Typography>
-                                            <Grid sx={{ marginTop: { xs: '30px',sm:'30px',md:'50px',lg:'70px' } }}>
-                                                <Typography sx={{ textAlign: 'right', fontSize: { xs: '20px', md: '20px' }, fontWeight: '700' }}>{item.bottomcontent}</Typography>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12} sm={6} md={6}>
+                                        <controls.Grid item xs={12} sm={6} md={6} sx={{ backgroundColor: '#FFD140', textAlign: 'start', padding: '25px', borderRadius: '20px', margin: { xs: '0', sm: '30px 0px', md: '60px 0px' } }}>
+                                            <controls.Typography sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: '600', lineHeight: '1.4' }}>{item.heading}</controls.Typography>
+                                            <controls.Typography sx={{ marginTop: '15px', fontSize: { xs: '13px', md: '15px' } }}>{item.content}</controls.Typography>
+                                            <controls.Grid sx={{ marginTop: { xs: '30px',sm:'30px',md:'50px',lg:'70px' } }}>
+                                                <controls.Typography sx={{ textAlign: 'right', fontSize: { xs: '20px', md: '20px' }, fontWeight: '700' }}>{item.bottomcontent}</controls.Typography>
+                                            </controls.Grid>
+                                        </controls.Grid>
+                                        <controls.Grid item xs={12} sm={6} md={6}>
                                             <img style={{ maxWidth: '100%', height: 'auto' }} src={item.imgUrl} alt="Puppy Food" />
-                                        </Grid>
+                                        </controls.Grid>
                                     </>
                                 )}
                             </React.Fragment>
                         ))}
-                    </Grid>
-                </Grid>
-            </Grid>
+                    </controls.Grid>
+                </controls.Grid>
+            </controls.Grid>
         </>
     )
 }

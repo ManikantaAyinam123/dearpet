@@ -1,28 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Grid from '@mui/material/Grid';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import { Icon } from "@iconify/react";
-import Drawer from '@mui/material/Drawer';
+import controls from './Import'
 import Authentication from './Authentication';
 import MenuContent from './MenuContent';
 import Dog from './Dog';
 import Cat from './Cat';
 import UserExists from './UserExists';
 import '../App.css';
-import { Link } from 'react-router-dom';
+
 
 const Appbar2 = () => {
-  const [isSticky, setIsSticky] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [userDrawerOpen, setUserDrawerOpen] = useState(false);
-  const [userExists, setUserExists] = useState(false);
-  const [hoveredTab, setHoveredTab] = useState(-1);
+  const [isSticky, setIsSticky] = controls.useState(false);
+  const [drawerOpen, setDrawerOpen] = controls.useState(false);
+  const [userDrawerOpen, setUserDrawerOpen] = controls.useState(false);
+  const [userExists, setUserExists] = controls.useState(false);
+  const [hoveredTab, setHoveredTab] = controls.useState(-1);
 
-  useEffect(() => {
+  controls.useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 0);
     };
@@ -64,32 +56,32 @@ const Appbar2 = () => {
 
   return (
     <div>
-      <AppBar position="static" className={isSticky ? 'sticky-appbar1' : 'static-appbar1'}>
-        
-      </AppBar>
-      <AppBar position={isSticky ? "fixed" : "static"} className={isSticky ? 'sticky-appbar2' : 'static-appbar2'}>
-        <Grid container backgroundColor={'#FFFFFF'} display="flex" direction="row" padding={'5px'}>
-          <Grid item sx={{ marginLeft: { xs: 4, lg: 10 } }}>
-            <Link to="/">
-            <Box component="img" src="https://dearpet.in/cdn/shop/files/logo.png?v=1617976255" sx={{ width: { xs: 30, lg: 45 }, height: { xs: 30, lg: 45 }, marginRight: 0 }} alt="logo" />
-            </Link>
-          </Grid>
+      <controls.AppBar position="static" className={isSticky ? 'sticky-appbar1' : 'static-appbar1'}>
 
-          <Grid item sx={{ marginLeft: 45, display: { xs: 'none', lg: 'block' }, padding: 0 }} onMouseLeave={handleTabMouseOut}>
-            <Box sx={{ position: 'relative', }}>
-              <Box>
-                <Tabs value={-1} aria-label="basic tabs example">
-                  <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="DOG" href="/DogPage" onMouseOver={() => handleTabMouseOver(0)} />
-                  <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="CAT" onMouseOver={() => handleTabMouseOver(1)} />
-                  <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="GROOMING" onMouseOver={() => handleTabMouseOver(2)} />
-                  <Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="BLOG" onMouseOver={() => handleTabMouseOver(3)} />
-                </Tabs>
-              </Box>
+      </controls.AppBar>
+      <controls.AppBar position={isSticky ? "fixed" : "static"} className={isSticky ? 'sticky-appbar2' : 'static-appbar2'}>
+        <controls.Grid container backgroundColor={'#FFFFFF'} display="flex" direction="row" padding={'5px'}>
+          <controls.Grid item sx={{ marginLeft: { xs: 4, lg: 10 } }}>
+            <controls.Link to="/">
+              <controls.Box component="img" src="https://dearpet.in/cdn/shop/files/logo.png?v=1617976255" sx={{ width: { xs: 30, lg: 45 }, height: { xs: 30, lg: 45 }, marginRight: 0 }} alt="logo" />
+            </controls.Link>
+          </controls.Grid>
+
+          <controls.Grid item sx={{ marginLeft: 45, display: { xs: 'none', lg: 'block' }, padding: 0 }} onMouseLeave={handleTabMouseOut}>
+            <controls.Box sx={{ position: 'relative', }}>
+              <controls.Box>
+                <controls.Tabs value={-1} aria-label="basic tabs example">
+                  <controls.Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="DOG" href="/DogPage" onMouseOver={() => handleTabMouseOver(0)} />
+                  <controls.Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="CAT" onMouseOver={() => handleTabMouseOver(1)} />
+                  <controls.Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="GROOMING" onMouseOver={() => handleTabMouseOver(2)} />
+                  <controls.Tab sx={{ fontSize: '14px', color: "#232323", fontWeight: 550 }} className='Tab' label="BLOG" onMouseOver={() => handleTabMouseOver(3)} />
+                </controls.Tabs>
+              </controls.Box>
               {(hoveredTab === 0 || hoveredTab === 1) && (
-                <Box
+                <controls.Box
                   sx={{
                     position: 'fixed',
-                    
+
                     left: 0,
                     width: '100%',
                     color: 'black',
@@ -100,45 +92,45 @@ const Appbar2 = () => {
                 >
                   {hoveredTab === 0 && <Dog />}
                   {hoveredTab === 1 && <Cat />}
-                </Box>
+                </controls.Box>
               )}
-            </Box>
-          </Grid>
+            </controls.Box>
+          </controls.Grid>
 
-          <Grid item sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }} >
-            <Box sx={{ marginRight: '15px' }}>
-              <IconButton sx={{ color: 'black' }}><Icon icon="gridicons:search" width="27" height="27" /></IconButton>
-            </Box>
-            <Box sx={{ display: { xs: 'none', lg: 'block', marginRight: '15px' } }}>
-              <IconButton onClick={handleDrawer} sx={{ color: 'black' }}> <Icon icon="pajamas:user" width="23" height="23" /> </IconButton>
-            </Box>
-            
-            <Drawer
+          <controls.Grid item sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }} >
+            <controls.Box sx={{ marginRight: '15px' }}>
+              <controls.IconButton sx={{ color: 'black' }}><controls.Icon icon="gridicons:search" width="27" height="27" /></controls.IconButton>
+            </controls.Box>
+            <controls.Box sx={{ display: { xs: 'none', lg: 'block', marginRight: '15px' } }}>
+              <controls.IconButton onClick={handleDrawer} sx={{ color: 'black' }}> <controls.Icon icon="pajamas:user" width="23" height="23" /> </controls.IconButton>
+            </controls.Box>
+
+            <controls.Drawer
               anchor="right"
               open={userDrawerOpen}
               onClose={() => toggleUserDrawer(false)}
             >
               <Authentication />
-            </Drawer>
-            <Drawer
+            </controls.Drawer>
+            <controls.Drawer
               anchor="right"
               open={userExists}
               onClose={() => toggleUserExistsDrawer(false)}
             >
               <UserExists />
-            </Drawer>
-            <Box sx={{ marginRight: { xs: '13px', lg: '100px' } }}>
-              <IconButton sx={{ color: 'black' }}><Icon icon="flowbite:shopping-bag-outline" width="27" height="27" /></IconButton>
-            </Box>
-            <Box sx={{ marginRight: { xs: '18px' }, display: { lg: 'none' }, }}>
-              <IconButton onClick={() => toggleShowDrawer(true)} sx={{ color: 'black' }} > <Icon icon="iconoir:menu" width="27" height="27" /></IconButton>
-            </Box>
-            <Drawer open={drawerOpen} onClose={() => toggleShowDrawer(false)}>
+            </controls.Drawer>
+            <controls.Box sx={{ marginRight: { xs: '13px', lg: '100px' } }}>
+              <controls.IconButton sx={{ color: 'black' }}><controls.Icon icon="flowbite:shopping-bag-outline" width="27" height="27" /></controls.IconButton>
+            </controls.Box>
+            <controls.Box sx={{ marginRight: { xs: '18px' }, display: { lg: 'none' }, }}>
+              <controls.IconButton onClick={() => toggleShowDrawer(true)} sx={{ color: 'black' }} > <controls.Icon icon="iconoir:menu" width="27" height="27" /></controls.IconButton>
+            </controls.Box>
+            <controls.Drawer open={drawerOpen} onClose={() => toggleShowDrawer(false)}>
               <MenuContent />
-            </Drawer>
-          </Grid>
-        </Grid>
-      </AppBar>
+            </controls.Drawer>
+          </controls.Grid>
+        </controls.Grid>
+      </controls.AppBar>
     </div>
   );
 }

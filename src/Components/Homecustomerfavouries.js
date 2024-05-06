@@ -1,10 +1,10 @@
 import React from 'react';
-import { Grid,Divider,Typography,Box } from '@mui/material';
 import { Swiper, SwiperSlide, } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import controls from './Import'
+
 
 const Homecustomerfavouries = () => {
   const images = [
@@ -26,12 +26,12 @@ const Homecustomerfavouries = () => {
     },
   ];
   return (
-    <Grid container sx={{backgroundColor:'#FFFFFF'}}>
-     <Grid container justifyContent={'center'}>
-    <Typography sx={{color:'#6A4EA4',fontSize:{xs:'20px',sm:"25px",md:'28px',lg:'30px'},fontWeight:{xs:700},letterSpacing:'0.1em',marginTop:{xs:'15px',sm:'35px'},marginBottom:{xs:'13px',sm:'20px'}}}>Customer Favourites</Typography>
-    </Grid>
-     <Grid container  justifyContent="center">
-      <Grid item width="95%">
+    <controls.Grid container sx={{backgroundColor:'#FFFFFF'}}>
+     <controls.Grid container justifyContent={'center'}>
+    <controls.Typography sx={{color:'#6A4EA4',fontSize:{xs:'20px',sm:"25px",md:'28px',lg:'30px'},fontWeight:{xs:700},letterSpacing:'0.1em',marginTop:{xs:'15px',sm:'35px'},marginBottom:{xs:'13px',sm:'20px'}}}>Customer Favourites</controls.Typography>
+    </controls.Grid>
+     <controls.Grid container  justifyContent="center">
+      <controls.Grid item width="95%">
         <Swiper
           className="mySwiper"
           breakpoints={{
@@ -49,14 +49,14 @@ const Homecustomerfavouries = () => {
          
             {images.map((item, index) => (
               <SwiperSlide key={index}>
-                <Box sx={{display:{xs:'block',md:'none'}}}>
-                <Grid item  backgroundColor={'#F5ECFF'}sx={{marginLeft:{xs:'18px',sm:'25px'},}}>
+                <controls.Box sx={{display:{xs:'block',md:'none'}}}>
+                <controls.Grid  item  backgroundColor={'#F5ECFF'}sx={{marginLeft:{xs:'18px',sm:'25px'},}}>
                   <img  height="auto" width="100%" src={item.imgurl} alt="Slide" />
                   
                   
-                </Grid>
-                <Typography sx={{marginTop:'5px',marginLeft:{xs:'17px',sm:'24px'},fontSize:{xs:'15px',sm:'17px'}}}>{item.imgname}</Typography>
-                </Box>
+                </controls.Grid>
+                <controls.Typography sx={{marginTop:'5px',marginLeft:{xs:'17px',sm:'24px'},fontSize:{xs:'15px',sm:'17px'}}}>{item.imgname}</controls.Typography>
+                </controls.Box>
               </SwiperSlide>
               
             ))}
@@ -64,26 +64,26 @@ const Homecustomerfavouries = () => {
             
         
         </Swiper>
-      </Grid>
-    </Grid>
-    <Grid container justifyContent={'center'}>
-  <Grid container item width="95%" justifyContent={'center'} spacing={2}>
+      </controls.Grid>
+    </controls.Grid>
+    <controls.Grid container justifyContent={'center'}>
+  <controls.Grid container item width="95%" justifyContent={'center'} spacing={2}>
     {images.map((item, index) => (
-      <Grid item key={index} md={2.7} sx={{marginLeft: { md: '24px' },display:{xs:'none',md:'block'}}}>
-        <Grid style={{ backgroundColor: '#F5ECFF' }}>
+      <controls.Grid item key={index} md={2.7} sx={{marginLeft: { md: '24px' },display:{xs:'none',md:'block'}}}>
+        <controls.Grid style={{ backgroundColor: '#F5ECFF' }}>
           <img height="auto" width="100%" src={item.imgurl} alt={item.imgname} />
         
-        </Grid>
-        <Typography sx={{marginTop:'5px',fontSize:{md:'19px'}}}>{item.imgname}</Typography>
-      </Grid>
+        </controls.Grid>
+        <controls.Typography sx={{marginTop:'5px',fontSize:{md:'19px'}}}>{item.imgname}</controls.Typography>
+      </controls.Grid>
     ))}
-  </Grid>
-</Grid>
+  </controls.Grid>
+</controls.Grid>
 
 
 
    
-    </Grid>
+    </controls.Grid>
   )
 }
 

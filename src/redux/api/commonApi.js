@@ -1,0 +1,1 @@
+export const baseUrl="https://auth-14b35-default-rtdb.asia-southeast1.firebasedatabase.app";

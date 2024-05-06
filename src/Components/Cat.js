@@ -1,56 +1,56 @@
 import React from 'react'
-import {  Grid, Typography } from '@mui/material'
+import controls from './Import'
 const Cat = () => {
   return (
-   <Grid container sx={{width:'100%',display:'flex',justifyContent:'space-around',}}>
-       <Grid item>
-        <Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Cat Accessories</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Bow Tie</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Collar,Leash&Harness</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Mufflers</Typography>
-        <Typography  sx={{ mt:3,mb:3,fontSize:'11px',fontWeight:550, }}>Cat Treates</Typography>
-        <Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Dear Pet Fav's</Typography>
-        <Typography  sx={{ fontSize:'11px',fontWeight:300, }}>Twin with your Pet</Typography>
+   <controls.Grid container sx={{width:'100%',display:'flex',justifyContent:'space-around',}}>
+       <controls.Grid item>
+        <controls.Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Cat Accessories</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Bow Tie</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Collar,Leash&Harness</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Mufflers</controls.Typography>
+        <controls.Typography  sx={{ mt:3,mb:3,fontSize:'11px',fontWeight:550, }}>Cat Treates</controls.Typography>
+        <controls.Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Dear Pet Fav's</controls.Typography>
+        <controls.Typography  sx={{ fontSize:'11px',fontWeight:300, }}>Twin with your Pet</controls.Typography>
 
         
        
        
-       </Grid>
-       <Grid item>
-       <Typography   sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Cat Beds & Crates</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Beds & Crates</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Furniture & Scratcher</Typography>
-        <Typography   sx={{ mt:3,mb:3,fontSize:'11px',fontWeight:550, }}>Cat Bowls</Typography>
-        <Typography   sx={{ fontSize:'11px',fontWeight:550, }}>Cat Toys</Typography>
+       </controls.Grid>
+       <controls.Grid item>
+       <controls.Typography   sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Cat Beds & Crates</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Beds & Crates</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Furniture & Scratcher</controls.Typography>
+        <controls.Typography   sx={{ mt:3,mb:3,fontSize:'11px',fontWeight:550, }}>Cat Bowls</controls.Typography>
+        <controls.Typography   sx={{ fontSize:'11px',fontWeight:550, }}>Cat Toys</controls.Typography>
       
      
        
       
        
       
-       </Grid>
-       <Grid item>
-       <Typography sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Dear Pet Collections</Typography>
-       <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Double Trouble Collection</Typography>
-       <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Something's Fishy Collection</Typography>
-       <Typography sx={{ fontSize:'11px',fontWeight:300, }}>Classic Collection</Typography>
-       <Typography sx={{ mt:3,mb:1,fontSize:'11px',fontWeight:550, }}>Hygiene & Care</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Oral Care</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Strains & Odour Control</Typography>
-        <Typography sx={{ fontSize:'11px',fontWeight:300, }}>Litter Training</Typography>
+       </controls.Grid>
+       <controls.Grid item>
+       <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Dear Pet Collections</controls.Typography>
+       <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Double Trouble Collection</controls.Typography>
+       <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Something's Fishy Collection</controls.Typography>
+       <controls.Typography sx={{ fontSize:'11px',fontWeight:300, }}>Classic Collection</controls.Typography>
+       <controls.Typography sx={{ mt:3,mb:1,fontSize:'11px',fontWeight:550, }}>Hygiene & Care</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Oral Care</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Strains & Odour Control</controls.Typography>
+        <controls.Typography sx={{ fontSize:'11px',fontWeight:300, }}>Litter Training</controls.Typography>
 
      
-       </Grid>
-       <Grid item>
+       </controls.Grid>
+       <controls.Grid item>
        
-        <Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Cat Gromming</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Syhampoos & Conditioners</Typography>
-        <Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Brushes & Combs</Typography>
-        <Typography sx={{ fontSize:'11px',fontWeight:300, }}>Towels & Wipes</Typography>
-        <Typography sx={{ mt:3,fontSize:'11px',fontWeight:550, }}>Travel & Utilities</Typography>
-       </Grid>
+        <controls.Typography  sx={{ mb:1,fontSize:'11px',fontWeight:550, }}>Cat Gromming</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Syhampoos & Conditioners</controls.Typography>
+        <controls.Typography sx={{ mb:1,fontSize:'11px',fontWeight:300, }}>Brushes & Combs</controls.Typography>
+        <controls.Typography sx={{ fontSize:'11px',fontWeight:300, }}>Towels & Wipes</controls.Typography>
+        <controls.Typography sx={{ mt:3,fontSize:'11px',fontWeight:550, }}>Travel & Utilities</controls.Typography>
+       </controls.Grid>
 
-   </Grid>
+   </controls.Grid>
   )
 }
 

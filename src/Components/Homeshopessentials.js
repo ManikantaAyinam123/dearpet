@@ -1,7 +1,6 @@
 import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import { Link } from 'react-router-dom'; 
 import Imagewithzoom from './ImageWithZoom';
+import controls from './Import'
 
 const Homeshopessentials = () => {
     const images = [
@@ -17,24 +16,24 @@ const Homeshopessentials = () => {
 
     return (
         <>
-            <Grid container sx={{ justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
-                <Grid container item width="90%" >
-                    <Grid item xs={12}>
-                        <Typography sx={{ color: '#6A4EA4', letterSpacing: '0.1em', fontSize: { xs: '20px', sm: '25px', lg: '30px', textAlign: 'center' }, fontWeight: { xs: 550, sm: 600, lg: 700 }, marginTop: { xs: '5px' }, marginBottom: { xs: '5px' } }}>
+            <controls.Grid container sx={{ justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
+                <controls.Grid container item width="90%" >
+                    <controls.Grid item xs={12}>
+                        <controls.Typography sx={{ color: '#6A4EA4', letterSpacing: '0.1em', fontSize: { xs: '20px', sm: '25px', lg: '30px', textAlign: 'center' }, fontWeight: { xs: 550, sm: 600, lg: 700 }, marginTop: { xs: '5px' }, marginBottom: { xs: '5px' } }}>
                             Shop For Essentials
-                        </Typography>
-                    </Grid>
-                    <Grid container sx={{ justifyContent: 'center' }}>
+                        </controls.Typography>
+                    </controls.Grid>
+                    <controls.Grid container sx={{ justifyContent: 'center' }}>
                         {images.map((item, index) => (
-                            <Grid item xs={12} sm={5.5} key={index} sx={{ margin: { sm: '0px 10px', md: '0px 15px', lg: '0px 25px' } }}>
-                                <Link to={item.link}> 
+                            <controls.Grid item xs={12} sm={5.5} key={index} sx={{ margin: { sm: '0px 10px', md: '0px 15px', lg: '0px 25px' } }}>
+                                <controls.Link to={item.link}> 
                                     <Imagewithzoom src={item.imageurl} alt="image not found" />
-                                </Link>
-                            </Grid>
+                                </controls.Link>
+                            </controls.Grid>
                         ))}
-                    </Grid>
-                </Grid>
-            </Grid>
+                    </controls.Grid>
+                </controls.Grid>
+            </controls.Grid>
         </>
     );
 }
